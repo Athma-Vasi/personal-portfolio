@@ -1,0 +1,16 @@
+
+.parcel-cache/
+coverage/
+node_modules/
+*.log
+.cache/
+__tests__/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

@@ -29,6 +29,7 @@
   --font-size-hero: clamp(5rem, 10vw, 10rem);
   --font-weight-hero: 500;
   --font-hero: var(--font-weight-hero) var(--font-size-hero) var(--font-family);
+  --font-title: var(--font-weight-medium) clamp(4rem, 6vw, 7rem) var(--font-family);
   --line-height: 1.5;
   --letter-spacing: clamp(.1rem, .2vw, .2rem);
   --text-align: left;
@@ -41,7 +42,7 @@
   --text: var(--font) var(--line-height) var(--letter-spacing) var(--text-align) var(--text-transform) var(--text-decoration);
   --z-index: 1;
   --spacing-plus: clamp(2rem, 4vw, 5rem);
-  --spacing-minus: max(-5vw, -10rem);
+  --spacing-minus: max(-5vw, -7rem);
 }
 
 html {
@@ -137,14 +138,12 @@ a {
 
 .main {
   padding: var(--padding-y) var(--padding-x);
-  letter-spacing: var(--letter-spacing);
   outline: 1px solid red;
   margin-top: clamp(5rem, 7vw, 10rem);
-  line-height: 1.5;
 }
 
 .section__home {
-  height: clamp(100vh - 13rem, 90vh, 100vh - 15rem);
+  height: clamp(100vh - 10rem, 90vh, 100vh - 15rem);
   outline: 1px solid #00f;
 }
 
@@ -162,7 +161,6 @@ a {
 .section__home__intro {
   font: var(--font-light);
   margin-bottom: var(--spacing-minus);
-  outline: 1px solid red;
   font-size: clamp(1.6rem, 2vw, 3rem);
 }
 
@@ -170,11 +168,45 @@ a {
   font: var(--font-hero);
   width: 100%;
   border-bottom: 1px solid var(--colour-text);
+  line-height: .69;
 }
 
 .section__home__desc {
   font: var(--font-reg);
   margin-top: var(--spacing-minus);
+}
+
+.section__about {
+  padding-top: var(--padding-y);
+  padding-bottom: var(--padding-y);
+  outline: 1px solid #00f;
+}
+
+.section__about__title {
+  font: var(--font-title);
+  letter-spacing: var(--letter-spacing);
+  text-align: end;
+}
+
+.section__about__articleLink {
+  color: var(--colour-accent-soft);
+}
+
+.icons {
+  width: clamp(3rem, 5vw, 7rem);
+  height: clamp(3rem, 5vw, 7rem);
+}
+
+.section__projects {
+  padding-top: var(--padding-y);
+  padding-bottom: var(--padding-y);
+  outline: 1px solid #00f;
+}
+
+.section__projects__title {
+  font: var(--font-title);
+  letter-spacing: var(--letter-spacing);
+  text-align: end;
 }
 
 /*# sourceMappingURL=index.61d3354a.css.map */
