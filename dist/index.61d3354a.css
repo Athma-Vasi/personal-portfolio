@@ -1,0 +1,180 @@
+:root {
+  --colour-background: #f0efeb;
+  --colour-text: #20201e;
+  --colour-accent-soft: #c2a3ad;
+  --colour-accent-bold: #ac3960;
+  --width-min: 320px;
+  --width-max: 1800px;
+  --padding-x: clamp(2rem, 3vw, 4rem);
+  --padding-y: clamp(2rem, 3vw, 4rem);
+  --border-radius: .5rem;
+  --border-width: .1rem;
+  --border-style: solid;
+  --border-color: #20201e;
+  --border: var(--border-width) var(--border-style) var(--border-color);
+  --shadow: 0 .5rem 1rem #0003;
+  --shadow-hover: 0 .5rem 1rem #0000004d;
+  --shadow-active: 0 .5rem 1rem #0006;
+  --transition: all .2s ease-in-out;
+  --font-family: "Work Sans", sans-serif;
+  --font-size-reg: clamp(1.6rem, 3vw, 4rem);
+  --font-weight-reg: 400;
+  --font-reg: var(--font-weight-reg) var(--font-size-reg) var(--font-family);
+  --font-size-light: clamp(1.6rem, 3vw, 4rem);
+  --font-weight-light: 300;
+  --font-light: var(--font-weight-light) var(--font-size-light) var(--font-family);
+  --font-size-medium: clamp(1.6rem, 3vw, 4rem);
+  --font-weight-medium: 500;
+  --font-medium: var(--font-weight-medium) var(--font-size-medium) var(--font-family);
+  --font-size-hero: clamp(5rem, 10vw, 10rem);
+  --font-weight-hero: 500;
+  --font-hero: var(--font-weight-hero) var(--font-size-hero) var(--font-family);
+  --line-height: 1.5;
+  --letter-spacing: clamp(.1rem, .2vw, .2rem);
+  --text-align: left;
+  --text-transform: none;
+  --text-decoration: none;
+  --text-decoration-color: #20201e;
+  --text-decoration-style: solid;
+  --text-decoration-thickness: .1rem;
+  --text-decoration: var(--text-decoration-style) var(--text-decoration-thickness) var(--text-decoration-color);
+  --text: var(--font) var(--line-height) var(--letter-spacing) var(--text-align) var(--text-transform) var(--text-decoration);
+  --z-index: 1;
+  --spacing-plus: clamp(2rem, 4vw, 5rem);
+  --spacing-minus: max(-5vw, -10rem);
+}
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+}
+
+*, :before, :after {
+  box-sizing: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  -webkit-text-decoration: var(--text-decoration);
+  text-decoration: var(--text-decoration);
+  color: inherit;
+}
+
+@font-face {
+  font-family: Work Sans;
+  src: url("WorkSans-Light.45cb4ffb.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Work Sans;
+  src: url("WorkSans-Regular.ee04c94e.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Work Sans;
+  src: url("WorkSans-Medium.d2e642de.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+.body {
+  background-color: var(--colour-background);
+  color: var(--colour-text);
+  font: var(--font-reg);
+}
+
+.header {
+  width: 100%;
+  height: clamp(5rem, 7vw, 10rem);
+  outline: 1px solid green;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navbar {
+  height: 100%;
+  padding: 0 var(--padding-x);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.navbar__logo {
+  font: var(--font-hero);
+  color: var(--colour-text);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing);
+}
+
+.navbar__links {
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: var(--spacing-plus);
+  display: flex;
+}
+
+.navbar__links a {
+  font: var(--font-medium);
+  color: var(--colour-text);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing);
+}
+
+.navbar__links a:hover {
+  color: var(--colour-accent-bold);
+}
+
+.main {
+  padding: var(--padding-y) var(--padding-x);
+  letter-spacing: var(--letter-spacing);
+  outline: 1px solid red;
+  margin-top: clamp(5rem, 7vw, 10rem);
+  line-height: 1.5;
+}
+
+.section__home {
+  height: clamp(100vh - 13rem, 90vh, 100vh - 15rem);
+  outline: 1px solid #00f;
+}
+
+.section__home__top {
+  height: 38%;
+}
+
+.section__home__bottom {
+  height: 62%;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+}
+
+.section__home__intro {
+  font: var(--font-light);
+  margin-bottom: var(--spacing-minus);
+  outline: 1px solid red;
+  font-size: clamp(1.6rem, 2vw, 3rem);
+}
+
+.section__home__name {
+  font: var(--font-hero);
+  width: 100%;
+  border-bottom: 1px solid var(--colour-text);
+}
+
+.section__home__desc {
+  font: var(--font-reg);
+  margin-top: var(--spacing-minus);
+}
+
+/*# sourceMappingURL=index.61d3354a.css.map */
