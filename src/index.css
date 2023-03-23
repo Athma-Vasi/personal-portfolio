@@ -24,26 +24,34 @@
 
   --font-family: "Work Sans", sans-serif;
 
-  --font-size-reg: clamp(1.6rem, 3vw, 4rem);
-  --font-weight-reg: 400;
-  --font-reg: var(--font-weight-reg) var(--font-size-reg) var(--font-family);
-
-  --font-size-light: clamp(1.6rem, 3vw, 4rem);
-  --font-weight-light: 300;
-  --font-light: var(--font-weight-light) var(--font-size-light)
-    var(--font-family);
-
-  --font-size-medium: clamp(1.6rem, 3vw, 4rem);
-  --font-weight-medium: 500;
-  --font-medium: var(--font-weight-medium) var(--font-size-medium)
-    var(--font-family);
-
+  --font-size-small: clamp(1.2rem, 2vw, 2rem);
+  --font-size-med: clamp(1.4rem, 2.5vw, 3rem);
+  --font-size-large: clamp(1.6rem, 3vw, 4rem);
+  --font-size-xlarge: clamp(2rem, 4vw, 5rem);
   --font-size-hero: clamp(5rem, 10vw, 10rem);
+
+  --font-weight-reg: 400;
+  --font-reg: var(--font-weight-reg) var(--font-size-med) var(--font-family);
+
+  --font-weight-light: 300;
+  --font-light: var(--font-weight-light) var(--font-size-small)
+    var(--font-family);
+
+  --font-weight-medium: 500;
+  --font-medium: var(--font-weight-medium) var(--font-size-med)
+    var(--font-family);
+
   --font-weight-hero: 500;
   --font-hero: var(--font-weight-hero) var(--font-size-hero) var(--font-family);
 
   --font-title: var(--font-weight-medium) clamp(4rem, 6vw, 7rem)
     var(--font-family);
+
+  --iconSquare-width: clamp(0.5rem, 2vw, 2rem);
+  --iconSquare-height: clamp(0.5rem, 2vw, 2rem);
+  --iconSquare--boxShadow: clamp(0.1rem, 0.5vw, 0.4rem)
+    clamp(0.1rem, 0.5vw, 0.4rem) clamp(0.05rem, 0.2vw, 0.1rem)
+    rgba(0, 0, 0, 0.5);
 
   --line-height: 1.5;
 
@@ -80,6 +88,7 @@ html {
   margin: 0;
   padding: 0;
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 *,
 *::before,
@@ -222,15 +231,107 @@ a {
   text-align: end;
 }
 
+.section__about__desc__container {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "empty desc";
+}
+
+.section__about__desc__left {
+  grid-area: empty;
+  outline: 1px solid seagreen;
+  height: 100%;
+}
+
+.section__about__desc__right {
+  grid-area: desc;
+  outline: 1px solid crimson;
+}
+
+.section__about__desc__text {
+  font: var(--font-reg);
+  font-size: var(--font-size-med);
+  line-height: var(--line-height);
+}
+
 .section__about__articleLink {
   color: var(--colour-accent-soft);
 }
 
 /* icons */
 .icons {
-  width: clamp(3rem, 5vw, 7rem);
-  height: clamp(3rem, 5vw, 7rem);
+  width: clamp(2rem, 4vw, 5rem);
+  height: clamp(2rem, 4vw, 5rem);
   /* fill: var(--colour-text); */
+}
+
+/* skills */
+.section__skills {
+  outline: 1px solid blue;
+  /* height: clamp(calc(100vh - 10rem), 90vh, calc(100vh - 15rem)); */
+  padding-top: var(--padding-y);
+  padding-bottom: var(--padding-y);
+}
+
+.section__skills__title {
+  font: var(--font-title);
+  letter-spacing: var(--letter-spacing);
+  text-align: end;
+}
+
+.section__skills__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  height: 100%;
+  outline: 1px solid red;
+}
+
+.section__skills__skill {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  grid-template-areas: "name icons";
+  grid-template-rows: repeat(auto, 1fr);
+  font: var(--font-reg);
+  width: 100%;
+  /* outline: 1px solid green; */
+}
+
+.section__skills__skillName {
+  grid-area: name;
+  font: var(--font-reg);
+  text-align: end;
+  padding-right: var(--spacing-plus);
+  outline: 1px solid brown;
+}
+
+.section__skills__icons {
+  grid-area: icons;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+
+  column-gap: var(--spacing-plus);
+  padding-right: var(--spacing-plus);
+}
+
+.section__skills__icon--filled {
+  width: var(--iconSquare-width);
+  height: var(--iconSquare-height);
+  background: var(--colour-accent-soft);
+  box-shadow: var(--iconSquare--boxShadow);
+}
+
+.section__skills__icon--empty {
+  width: clamp(0.5rem, 2vw, 2rem);
+  height: clamp(0.5rem, 2vw, 2rem);
+  background: var(--colour-background);
+  border: 1px solid var(--colour-accent-soft);
+  box-shadow: var(--iconSquare--boxShadow);
 }
 
 /* projects */
