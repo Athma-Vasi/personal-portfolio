@@ -25,6 +25,12 @@
           </li>
           <li class="navbar__link"><a href="">Contact</a></li>
         </ul>
+        <!-- mobile burger -->
+        <div class="navbar__burger">
+          <div class="navbar__burger__line"></div>
+          <div class="navbar__burger__line"></div>
+          <div class="navbar__burger__line"></div>
+        </div>
       </nav>
     </header>
 
@@ -116,22 +122,7 @@
               <div class="section__skills__icon--empty"></div>
             </div>
           </div>
-          <!-- javscript -->
-          <div class="section__skills__skill">
-            <p class="section__skills__skillName">JavaScript</p>
-            <div class="section__skills__icons">
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--filled"></div>
-              <div class="section__skills__icon--empty"></div>
-              <div class="section__skills__icon--empty"></div>
-              <div class="section__skills__icon--empty"></div>
-            </div>
-          </div>
+
           <!-- typescript -->
           <div class="section__skills__skill">
             <p class="section__skills__skillName">TypeScript</p>
@@ -272,16 +263,26 @@
       <!-- projects -->
       <section class="section__projects" id="section__projects">
         <h2 class="section__projects__title">Projects</h2>
+
         <div class="section__projects__container">
+          <!-- battleship -->
           <div class="section__projects__card">
             <div class="section__projects__card__top">
-              <div class="section__projects__card__top__img"></div>
-              <div class="section__projects__card__top__title">
-                <h3>Battleship</h3>
+              <a
+                href="https://github.com/Athma-Vasi/Battleship"
+                target="_blank"
+              >
+                <h3 class="section__projects__card__top__title">Battleship</h3>
+              </a>
+              <div class="section__projects__card__top__img">
+                <img
+                  src="../src/assets/images/battleship/battleship.png"
+                  alt="battleship project"
+                />
               </div>
             </div>
             <div class="section__projects__card__bottom">
-              <p>
+              <p class="section__projects__card__bottom__desc">
                 Battleship game set in the Honorverse and inspired by the movie
                 War Games. The game features a tactical overview and real-time
                 contextual battle messages. The setting of the game was inspired
@@ -309,16 +310,21 @@
               </div>
             </div>
           </div>
-          <!--  -->
+          <!-- byblos  -->
           <div class="section__projects__card">
             <div class="section__projects__card__top">
-              <div class="section__projects__card__top__img"></div>
-              <div class="section__projects__card__top__title">
-                <h3>Byblos</h3>
+              <a href="https://github.com/Athma-Vasi/Byblos" target="_blank">
+                <h3 class="section__projects__card__top__title">Byblos</h3>
+              </a>
+              <div class="section__projects__card__top__img">
+                <img
+                  src="../src/assets/images/byblos/byblos.png"
+                  alt="byblos project"
+                />
               </div>
             </div>
             <div class="section__projects__card__bottom">
-              <p>
+              <p class="section__projects__card__bottom__desc">
                 Byblos is a free web app that allows you to explore an endless
                 world of literature, all stored in one convenient location. You
                 can search and preview any book before making a commitment. Once
@@ -358,19 +364,32 @@
                   alt="vite logo"
                   class="icons"
                 />
+                <img
+                  src="../src/assets/logos/vercel.svg"
+                  alt="vercel logo"
+                  class="icons"
+                />
               </div>
             </div>
           </div>
           <!--  -->
           <div class="section__projects__card">
             <div class="section__projects__card__top">
-              <div class="section__projects__card__top__img"></div>
-              <div class="section__projects__card__top__title">
-                <h3>Calculator</h3>
+              <a
+                href="https://github.com/Athma-Vasi/calculator-react"
+                target="_blank"
+              >
+                <h3 class="section__projects__card__top__title">Calculator</h3>
+              </a>
+              <div class="section__projects__card__top__img">
+                <img
+                  src="../src/assets/images/calculator-react/calculator-react.png"
+                  alt="calculator project"
+                />
               </div>
             </div>
             <div class="section__projects__card__bottom">
-              <p>
+              <p class="section__projects__card__bottom__desc">
                 A TDD remake of my Odin Project calculator project using React,
                 TypeScript, Next.js, Tailwind, Styled-Components, Cypress, with
                 assets from Frontend Mentor
@@ -405,6 +424,179 @@
                 <img
                   src="../src/assets/logos/nextdotjs.svg"
                   alt="nextjs logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/vercel.svg"
+                  alt="vercel logo"
+                  class="icons"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- password generator app -->
+          <div class="section__projects__card">
+            <div class="section__projects__card__top">
+              <a
+                href="https://github.com/Athma-Vasi/password-generator-app"
+                target="_blank"
+              >
+                <h3 class="section__projects__card__top__title">
+                  Password Generator
+                </h3>
+              </a>
+              <div class="section__projects__card__top__img">
+                <img
+                  src="../src/assets/images/password-generator/password-generator.png"
+                  alt="password generator app project"
+                />
+              </div>
+            </div>
+            <div class="section__projects__card__bottom">
+              <p class="section__projects__card__bottom__desc">
+                A simple password generator app that generates a random string
+                based on user selecteable parameters such as length, lowercase,
+                uppercase, numeric, and/or special characters. The package used
+                is the random npm library, which uses Math.random() as the
+                underlying PRNG. The app also provides a strength rating for the
+                generated password.
+              </p>
+
+              <div class="section__projects__card__bottom_icons">
+                <img
+                  src="../src/assets/logos/react.svg"
+                  alt="react logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/tailwindcss.svg"
+                  alt="tailwindcss logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/typescript.svg"
+                  alt="typescript logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/nextdotjs.svg"
+                  alt="nextjs logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/vercel.svg"
+                  alt="vercel logo"
+                  class="icons"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- memoji card app -->
+          <div class="section__projects__card">
+            <div class="section__projects__card__top">
+              <a
+                href="https://github.com/Athma-Vasi/Memoji-Card"
+                target="_blank"
+              >
+                <h3 class="section__projects__card__top__title">Memoji Card</h3>
+              </a>
+              <div class="section__projects__card__top__img">
+                <img
+                  src="../src/assets/images/memoji-card/memoji-card.png"
+                  alt="memoji card app project"
+                />
+              </div>
+            </div>
+            <div class="section__projects__card__bottom">
+              <p class="section__projects__card__bottom__desc">
+                A simple app that allows you to create a custom Memoji card. The
+                app uses the react-memoji npm package to generate the Memoji
+                card. The app also allows you to save your Memoji card as a png
+                image.
+              </p>
+
+              <div class="section__projects__card__bottom_icons">
+                <img
+                  src="../src/assets/logos/react.svg"
+                  alt="react logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/tailwindcss.svg"
+                  alt="tailwindcss logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/typescript.svg"
+                  alt="typescript logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/nextdotjs.svg"
+                  alt="nextjs logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/vercel.svg"
+                  alt="vercel logo"
+                  class="icons"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- rock-paper-scissors-lizard-spock app -->
+          <div class="section__projects__card">
+            <div class="section__projects__card__top">
+              <a
+                href="https://github.com/Athma-Vasi/Rock-Paper-Scissors-Lizard-Spock"
+                target="_blank"
+              >
+                <h3 class="section__projects__card__top__title">
+                  Rock Paper Scissors Lizard Spock
+                </h3>
+              </a>
+              <div class="section__projects__card__top__img">
+                <img
+                  src="../src/assets/images/rock-paper-scissors-lizard-spock/r-p-s-l-s.png"
+                  alt="rock-paper-scissors-lizard-spock app project"
+                />
+              </div>
+            </div>
+            <div class="section__projects__card__bottom">
+              <p class="section__projects__card__bottom__desc">
+                This is an implementation of Rock-Paper-Scissors-Lizard-Spock, a
+                variant of the classic game Rock-Paper-Scissors. The game is
+                played against the computer, who each choose from one of five
+                available options.
+              </p>
+
+              <div class="section__projects__card__bottom_icons">
+                <img
+                  src="../src/assets/logos/react.svg"
+                  alt="react logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/tailwindcss.svg"
+                  alt="tailwindcss logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/typescript.svg"
+                  alt="typescript logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/nextdotjs.svg"
+                  alt="nextjs logo"
+                  class="icons"
+                />
+                <img
+                  src="../src/assets/logos/vercel.svg"
+                  alt="vercel logo"
                   class="icons"
                 />
               </div>
