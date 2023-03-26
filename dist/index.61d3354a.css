@@ -41,6 +41,8 @@
   --iconSquare-width: clamp(.5rem, 2vw, 2rem);
   --iconSquare-height: clamp(.5rem, 2vw, 2rem);
   --iconSquare--boxShadow: clamp(.1rem, .5vw, .4rem) clamp(.1rem, .5vw, .4rem) clamp(.05rem, .2vw, .1rem) #00000080;
+  --iconsTech-width-desktop: clamp(1.5rem, 3.5vw, 3.5rem);
+  --iconsTech-height-desktop: clamp(1.5rem, 3.5vw, 3.5rem);
   --line-height: 1.5;
   --letter-spacing: clamp(.1rem, .2vw, .2rem);
   --text-align: left;
@@ -189,7 +191,6 @@ a {
 }
 
 .section__aboutSkills__container {
-  outline: 1px solid green;
   grid-template: "about skills" 1fr
   / 38% 62%;
   display: grid;
@@ -197,7 +198,6 @@ a {
 
 .section__about {
   width: 100%;
-  outline: 1px solid red;
   grid-area: about;
 }
 
@@ -206,7 +206,6 @@ a {
   letter-spacing: var(--letter-spacing);
   text-align: end;
   width: 100%;
-  outline: 1px solid gray;
   margin-left: auto;
 }
 
@@ -226,11 +225,6 @@ a {
   color: var(--colour-accent-soft);
 }
 
-.icons {
-  width: clamp(2rem, 4vw, 5rem);
-  height: clamp(2rem, 4vw, 5rem);
-}
-
 .section__skills {
   padding-top: var(--spacing-plus);
   width: 100%;
@@ -242,7 +236,6 @@ a {
   letter-spacing: var(--letter-spacing);
   text-align: start;
   width: 62%;
-  outline: 1px solid gray;
   margin-left: auto;
 }
 
@@ -295,6 +288,11 @@ a {
   box-shadow: var(--iconSquare--boxShadow);
 }
 
+.section__projects {
+  width: 100%;
+  padding-top: var(--spacing-plus);
+}
+
 .section__projects__title {
   font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
@@ -306,34 +304,72 @@ a {
 
 .section__projects__container {
   width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+  grid-template-rows: repeat(auto, 1fr);
+  grid-gap: var(--spacing-plus);
+  padding-top: var(--spacing-plus);
   color: var(--colour-text-light);
+  display: grid;
 }
 
 .section__projects__card {
-  grid-template: "left right" 1fr
-  / 38% 62%;
-  display: grid;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
 }
 
 .section__projects__card__top {
   flex-direction: column;
-  grid-area: left;
   justify-content: space-between;
   display: flex;
 }
 
 .section__projects__card__top__title {
-  font: var(--font-medium);
-  font-size: var(--font-size-large);
+  font: var(--font-title-desktop);
   text-align: start;
+  width: 62%;
+  outline: 1px solid gray;
+  margin-left: auto;
 }
 
 .section__projects__card__top__img {
   width: 100%;
 }
 
+.section__projects__card__top__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
 .section__projects__card__bottom {
-  grid-area: right;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+.section__projects__card__bottom__desc {
+  font: var(--font-description-desktop);
+  line-height: var(--line-height);
+  font-size: var(--font-size-med);
+}
+
+.section__projects__card__bottom_icons {
+  width: 38%;
+  outline: 1px solid gray;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: clamp(.25rem, 1vw, .35rem);
+  margin-right: auto;
+  display: flex;
+}
+
+.icons {
+  width: var(--iconsTech-width-desktop);
+  height: var(--iconsTech-height-desktop);
 }
 
 @media screen and (max-width: 768px) {
@@ -546,6 +582,13 @@ a {
 }
 
 @media screen and (min-width: 1440px) {
+  .section__about__title {
+    text-align: start;
+    width: 62%;
+    outline: 1px solid gray;
+    margin-left: auto;
+  }
+
   .section__about__desc__text {
     font-size: var(--font-size-med);
   }

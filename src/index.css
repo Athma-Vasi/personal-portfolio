@@ -75,6 +75,9 @@
     clamp(0.1rem, 0.5vw, 0.4rem) clamp(0.05rem, 0.2vw, 0.1rem)
     rgba(0, 0, 0, 0.5);
 
+  --iconsTech-width-desktop: clamp(1.5rem, 3.5vw, 3.5rem);
+  --iconsTech-height-desktop: clamp(1.5rem, 3.5vw, 3.5rem);
+
   --line-height: 1.5;
 
   --letter-spacing: clamp(0.1rem, 0.2vw, 0.2rem);
@@ -240,21 +243,18 @@ a {
   grid-template-columns: 38% 62%;
   grid-template-rows: 1fr;
   grid-template-areas: "about skills";
-  outline: 1px solid green;
 }
 
 /* about */
 .section__about {
   grid-area: about;
   width: 100%;
-  outline: 1px solid red;
 }
 
 .section__about__title {
   font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
   text-align: end;
-  outline: 1px solid gray;
   width: 100%;
   margin-left: auto;
 }
@@ -263,7 +263,6 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* height: 100%; */
 }
 
 .section__about__desc__text {
@@ -274,12 +273,6 @@ a {
 
 .section__about__articleLink {
   color: var(--colour-accent-soft);
-}
-
-/* icons */
-.icons {
-  width: clamp(2rem, 4vw, 5rem);
-  height: clamp(2rem, 4vw, 5rem);
 }
 
 /* skills */
@@ -293,7 +286,6 @@ a {
   font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
   text-align: start;
-  outline: 1px solid gray;
   width: 62%;
   margin-left: auto;
 }
@@ -329,8 +321,6 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  /* column-gap: clamp(0.5rem, 2vw, 2rem); */
   padding: 0px var(--spacing-plus);
 }
 
@@ -351,8 +341,8 @@ a {
 
 /* projects */
 .section__projects {
-  /* padding-top: var(--padding-y);
-  padding-bottom: var(--padding-y); */
+  width: 100%;
+  padding-top: var(--spacing-plus);
 }
 
 .section__projects__title {
@@ -366,38 +356,85 @@ a {
 
 .section__projects__container {
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+  grid-template-rows: repeat(auto, 1fr);
+  grid-gap: var(--spacing-plus);
+  padding-top: var(--spacing-plus);
   color: var(--colour-text-light);
 }
 
 .section__projects__card {
-  display: grid;
-  grid-template-columns: 38% 62%;
-  grid-template-rows: 1fr;
-  grid-template-areas: "left right";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: clamp(30rem, 38vh, 40rem); */
+  /* background: var(--colour-background); */
+  /* box-shadow: var(--card--boxShadow); */
+  /* border-radius: var(--card--borderRadius); */
+  /* padding: var(--spacing-plus); */
+  width: 100%;
 }
 
 .section__projects__card__top {
-  grid-area: left;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .section__projects__card__top__title {
-  font: var(--font-medium);
-  font-size: var(--font-size-large);
+  font: var(--font-title-desktop);
   text-align: start;
+  outline: 1px solid gray;
+  width: 62%;
+  margin-left: auto;
 }
 
 .section__projects__card__top__img {
   width: 100%;
 }
 
+.section__projects__card__top__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
 /* bottom */
 .section__projects__card__bottom {
-  grid-area: right;
-  /* height: clamp(30rem, 38vh, 40rem); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.section__projects__card__bottom__desc {
+  font: var(--font-description-desktop);
+  line-height: var(--line-height);
+  font-size: var(--font-size-med);
+}
+
+.section__projects__card__bottom_icons {
+  outline: 1px solid gray;
+  width: 38%;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: clamp(0.25rem, 1vw, 0.35rem);
+}
+
+/* icons */
+.icons {
+  width: var(--iconsTech-width-desktop);
+  height: var(--iconsTech-height-desktop);
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
 
 @media screen and (max-width: 768px) {
   /* navbar */
@@ -627,6 +664,13 @@ a {
 }
 
 @media screen and (min-width: 1440px) {
+  .section__about__title {
+    text-align: start;
+    outline: 1px solid gray;
+    width: 62%;
+    margin-left: auto;
+  }
+
   .section__about__desc__text {
     font-size: var(--font-size-med);
   }
