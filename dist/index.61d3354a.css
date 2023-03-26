@@ -36,7 +36,7 @@
   --font-subtitle-mobile: var(--font-weight-reg) var(--font-size-xlarge) var(--font-family);
   --font-skills-desktop: var(--font-weight-reg) var(--font-size-med) var(--font-family);
   --font-skills-mobile: var(--font-weight-reg) var(--font-size-large) var(--font-family);
-  --font-description-desktop: var(--font-weight-reg) var(--font-size-med) var(--font-family);
+  --font-description-desktop: var(--font-weight-reg) var(--font-size-small) var(--font-family);
   --font-description-mobile: var(--font-weight-reg) var(--font-size-large) var(--font-family);
   --iconSquare-width: clamp(.5rem, 2vw, 2rem);
   --iconSquare-height: clamp(.5rem, 2vw, 2rem);
@@ -169,7 +169,7 @@ a {
 }
 
 .section__home__intro {
-  font: var(--font-subtitle-desktop);
+  font: var(--font-description-desktop);
   margin-bottom: var(--spacing-minus);
   color: var(--colour-text-light);
   font-size: clamp(1.6rem, 2vw, 3rem);
@@ -183,34 +183,37 @@ a {
 }
 
 .section__home__desc {
-  font: var(--font-description-desktop);
+  font: var(--font-subtitle-desktop);
   margin-top: var(--spacing-minus);
   color: var(--colour-text-light);
 }
 
+.section__aboutSkills__container {
+  outline: 1px solid green;
+  grid-template: "about skills" 1fr
+  / 38% 62%;
+  display: grid;
+}
+
 .section__about {
-  padding-top: var(--padding-y);
-  padding-bottom: var(--padding-y);
+  width: 100%;
+  outline: 1px solid red;
+  grid-area: about;
 }
 
 .section__about__title {
   font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
   text-align: end;
+  width: 100%;
+  outline: 1px solid gray;
+  margin-left: auto;
 }
 
 .section__about__desc__container {
-  grid-template: "empty desc" 1fr
-  / 38% 62%;
-  display: grid;
-}
-
-.section__about__desc__left {
-  grid-area: empty;
-}
-
-.section__about__desc__right {
-  grid-area: desc;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
 }
 
 .section__about__desc__text {
@@ -229,17 +232,22 @@ a {
 }
 
 .section__skills {
-  padding-top: var(--padding-y);
-  padding-bottom: var(--padding-y);
+  padding-top: var(--spacing-plus);
+  width: 100%;
+  grid-area: skills;
 }
 
 .section__skills__title {
-  font: var(--font-title);
+  font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
-  text-align: end;
+  text-align: start;
+  width: 62%;
+  outline: 1px solid gray;
+  margin-left: auto;
 }
 
 .section__skills__container {
+  padding-top: var(--spacing-plus);
   flex-direction: column;
   justify-content: center;
   align-items: start;
@@ -250,16 +258,16 @@ a {
   grid-template-columns: 38% 62%;
   grid-template-areas: "name icons";
   grid-template-rows: repeat(auto, 1fr);
-  font: var(--font-reg);
   width: 100%;
   display: grid;
 }
 
 .section__skills__skillName {
-  font: var(--font-reg);
+  font: var(--font-skills-desktop);
   text-align: end;
   padding-right: var(--spacing-plus);
   color: var(--colour-text-light);
+  border-right: 1px solid var(--colour-accent-bold);
   grid-area: name;
 }
 
@@ -269,7 +277,6 @@ a {
   grid-area: icons;
   justify-content: space-between;
   align-items: center;
-  column-gap: clamp(.5rem, 2vw, 2rem);
   display: flex;
 }
 
@@ -289,9 +296,12 @@ a {
 }
 
 .section__projects__title {
-  font: var(--font-title);
+  font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
-  text-align: end;
+  text-align: start;
+  width: 62%;
+  outline: 1px solid gray;
+  margin-left: auto;
 }
 
 .section__projects__container {
@@ -366,6 +376,13 @@ a {
   .section__home__desc {
     font: var(--font-description-mobile);
     margin-top: var(--spacing-minus);
+  }
+
+  .section__aboutSkills__container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
 
   .section__about {
@@ -519,6 +536,18 @@ a {
     column-gap: clamp(.5rem, 2vw, 2rem);
     margin-left: auto;
     display: flex;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .section__about__desc__text {
+    font-size: var(--font-size-small);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section__about__desc__text {
+    font-size: var(--font-size-med);
   }
 }
 
