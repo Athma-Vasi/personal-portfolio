@@ -35,6 +35,10 @@ async function handleWindowScroll(this: Window, _event: Event): Promise<void> {
     console.groupEnd();
   }
 
+  const header = document.querySelector<HTMLElement>(".header");
+  const modalContainer =
+    document.querySelector<HTMLElement>(".modal__container");
+
   // get current scroll position
   const currentScrollPosition = this.scrollY;
 
@@ -47,11 +51,8 @@ async function handleWindowScroll(this: Window, _event: Event): Promise<void> {
   const scrollDirection =
     currentScrollPosition > previousScrollPosition ? "down" : "up";
 
-  const header = document.querySelector<HTMLElement>(".header");
-  const modalContainer =
-    document.querySelector<HTMLElement>(".modal__container");
-
   // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
+  // if modalContainer is displayed, then header is stickied to top of page
   if (header && modalContainer && modalContainer.style.display === "none") {
     if (scrollDirection === "down") {
       addClassesToElem(["header--hidden"])(header);

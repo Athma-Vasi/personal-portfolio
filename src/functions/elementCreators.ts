@@ -137,9 +137,9 @@ const addAttributeValuesToElem =
   (attrVals: Array<string[]>) =>
   (elem: HTMLElement | null): HTMLElement | null => {
     return attrVals.reduce(
-      (element: HTMLElement | null, attrVal: Array<string>) => {
-        if (attrVal.length > 2) return element;
-        if (element) element.setAttribute(attrVal[0], attrVal[1]);
+      (element: HTMLElement | null, [attribute, value]: Array<string>) => {
+        if (!attribute || !value) return element;
+        if (element) element.setAttribute(attribute, value);
 
         return element;
       },
@@ -198,10 +198,10 @@ const addStylesToElem =
   (stylePropVals: Array<string[]>) =>
   (elem: HTMLElement | null): HTMLElement | null => {
     return stylePropVals.reduce(
-      (element: HTMLElement | null, curr: string[]) => {
-        if (curr.length > 2) return null;
+      (element: HTMLElement | null, [property, value]: string[]) => {
+        if (!property || !value) return element;
+        if (element) element.style.setProperty(property, value);
 
-        if (element) element.style.setProperty(curr[0], curr[1]);
         return element;
       },
       elem

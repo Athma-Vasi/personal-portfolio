@@ -817,9 +817,9 @@ const pipe = (...funcs)=>(value)=>funcs.reduce((res, func)=>func(res), value);
  * addAttributeToElem([['id', 'id1'], ['data-test', 'test']])
  * )(elemCreator('div')(['class1', 'class2']))
  */ const addAttributeValuesToElem = (attrVals)=>(elem)=>{
-        return attrVals.reduce((element, attrVal)=>{
-            if (attrVal.length > 2) return element;
-            if (element) element.setAttribute(attrVal[0], attrVal[1]);
+        return attrVals.reduce((element, [attribute, value])=>{
+            if (!attribute || !value) return element;
+            if (element) element.setAttribute(attribute, value);
             return element;
         }, elem);
     };
@@ -861,9 +861,9 @@ const pipe = (...funcs)=>(value)=>funcs.reduce((res, func)=>func(res), value);
  * )(elemCreator('div')(['class1', 'class2']))
  *
  */ const addStylesToElem = (stylePropVals)=>(elem)=>{
-        return stylePropVals.reduce((element, curr)=>{
-            if (curr.length > 2) return null;
-            if (element) element.style.setProperty(curr[0], curr[1]);
+        return stylePropVals.reduce((element, [property, value])=>{
+            if (!property || !value) return element;
+            if (element) element.style.setProperty(property, value);
             return element;
         }, elem);
     };
@@ -1077,15 +1077,16 @@ var _elementCreators = require("../functions/elementCreators");
         console.error("detailed stack trace", error_.stack);
         console.groupEnd();
     }
+    const header = document.querySelector(".header");
+    const modalContainer = document.querySelector(".modal__container");
     // get current scroll position
     const currentScrollPosition = this.scrollY;
     // if previousScrollPosition is null, set it to currentScrollPosition
     if (previousScrollPosition === null) previousScrollPosition = currentScrollPosition;
     // determine scroll direction
     const scrollDirection = currentScrollPosition > previousScrollPosition ? "down" : "up";
-    const header = document.querySelector(".header");
-    const modalContainer = document.querySelector(".modal__container");
     // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
+    // if modalContainer is displayed, then header is stickied to top of page
     if (header && modalContainer && modalContainer.style.display === "none") {
         if (scrollDirection === "down") (0, _elementCreators.addClassesToElem)([
             "header--hidden"
