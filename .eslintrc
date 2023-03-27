@@ -10,7 +10,6 @@
     "plugin:import/warnings",
     "plugin:security/recommended",
     "plugin:sonarjs/recommended",
-    "plugin:node/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],

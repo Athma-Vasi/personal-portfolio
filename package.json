@@ -24,13 +24,13 @@
   "license": "MIT",
   "devDependencies": {
     "@swc/helpers": "^0.4.14",
+    "@types/localforage": "^0.0.34",
     "@types/node": "^18.15.5",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-security": "^1.7.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
@@ -39,5 +39,8 @@
     "parcel": "^2.8.3",
     "prettier": "^2.8.6",
     "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "localforage": "^1.10.0"
   }
 }
