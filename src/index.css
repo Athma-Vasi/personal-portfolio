@@ -9,6 +9,8 @@
   --width-min: 320px;
   --width-max: 1800px;
 
+  --header-height: clamp(5rem, 7vw, 10rem);
+
   --padding-x: clamp(2rem, 3vw, 4rem);
   --padding-y: clamp(2rem, 3vw, 4rem);
 
@@ -171,7 +173,7 @@ a:hover {
   top: 0;
   left: 0;
   width: 100%;
-  height: clamp(5rem, 7vw, 10rem);
+  height: var(--header-height);
   transition: transform 0.382s ease-in-out;
 }
 
@@ -455,11 +457,11 @@ a:hover {
   /* mobile menu modal */
   .modal__container {
     position: fixed;
-    top: clamp(4rem, 8vh, 8rem);
+    top: var(--header-height);
     right: 0;
     width: 62%;
     height: 38%;
-    background-color: var(--colour-background);
+    background: var(--colour-navbar-background);
     z-index: var(--z-index);
     /* display: none; */
     outline: 1px solid green;

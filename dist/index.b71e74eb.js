@@ -1084,14 +1084,13 @@ var _elementCreators = require("../functions/elementCreators");
     // determine scroll direction
     const scrollDirection = currentScrollPosition > previousScrollPosition ? "down" : "up";
     const header = document.querySelector(".header");
-    // if header exists, add or remove header--hidden class based on scroll direction
-    if (header) {
-        if (scrollDirection === "down") // header.classList.add("header--hidden");
-        (0, _elementCreators.addClassesToElem)([
+    const modalContainer = document.querySelector(".modal__container");
+    // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
+    if (header && modalContainer && modalContainer.style.display === "none") {
+        if (scrollDirection === "down") (0, _elementCreators.addClassesToElem)([
             "header--hidden"
         ])(header);
-        else // header.classList.remove("header--hidden");
-        (0, _elementCreators.removeClassesFromElem)([
+        else (0, _elementCreators.removeClassesFromElem)([
             "header--hidden"
         ])(header);
     }

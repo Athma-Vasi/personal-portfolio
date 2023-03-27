@@ -4,6 +4,7 @@ import {
   addClassesToElem,
   removeClassesFromElem,
 } from "../functions/elementCreators";
+import { removeMenuModal } from "./handleNavbarBurgerClick";
 
 /**
  * @description Handles window scroll event. Displays header on scroll up and hides on scroll down. Stores current scroll position in localforage.
@@ -47,14 +48,14 @@ async function handleWindowScroll(this: Window, _event: Event): Promise<void> {
     currentScrollPosition > previousScrollPosition ? "down" : "up";
 
   const header = document.querySelector<HTMLElement>(".header");
+  const modalContainer =
+    document.querySelector<HTMLElement>(".modal__container");
 
-  // if header exists, add or remove header--hidden class based on scroll direction
-  if (header) {
+  // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
+  if (header && modalContainer && modalContainer.style.display === "none") {
     if (scrollDirection === "down") {
-      // header.classList.add("header--hidden");
       addClassesToElem(["header--hidden"])(header);
     } else {
-      // header.classList.remove("header--hidden");
       removeClassesFromElem(["header--hidden"])(header);
     }
   }
