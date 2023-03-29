@@ -411,7 +411,6 @@ a:hover {
     height: 38%;
     background: var(--colour-navbar-background);
     z-index: var(--z-index);
-    outline: 1px solid green;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -422,7 +421,6 @@ a:hover {
     width: 100%;
     height: 100%;
     padding: 0 var(--padding-x);
-    outline: 1px solid #00f;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -435,7 +433,6 @@ a:hover {
     padding: var(--spacing-plus) 0;
     color: var(--colour-text-light);
     width: 62%;
-    outline: 1px solid red;
     margin-left: auto;
     text-decoration: none;
   }
@@ -456,7 +453,6 @@ a:hover {
   .navbar__burger {
     width: 3.5rem;
     height: 3.5rem;
-    outline: 1px solid #f0f;
     display: block;
   }
 
