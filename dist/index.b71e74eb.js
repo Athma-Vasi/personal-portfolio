@@ -564,7 +564,12 @@ var _handleMainElementClick = require("./eventHandlers/handleMainElementClick");
 var _handleNavbarBurgerClick = require("./eventHandlers/handleNavbarBurgerClick");
 var _handleWindowScroll = require("./eventHandlers/handleWindowScroll");
 var _elementCreators = require("./functions/elementCreators");
-async function mainApp() {
+/**
+ * Main app function. This function is called after the DOM is loaded. It is responsible for adding event listeners to the navbar burger and the main element, adding an event listener to the window to display the header on scroll up and hide on scroll down, and removing the modal display on page load. Finally, it deletes localforage keys upon page exit.
+ * @function
+ * @async
+ * @returns {Promise<void>}
+ */ async function mainApp() {
     // remove modal display on page load
     (0, _handleNavbarBurgerClick.removeMenuModal)();
     // add event listener to navbar burger
@@ -2793,7 +2798,13 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "handleMainElementClick", ()=>handleMainElementClick);
 var _removeMenuModal = require("../functions/removeMenuModal");
-function handleMainElementClick(_event) {
+/**
+ * Handles the click event on the main element. This is used to close the menu modal when the user clicks outside of the menu modal.
+ * @event click
+ * @param {HTMLElement} this - Main html element.
+ * @param {Event} _event - The click event.
+ * @returns {void}
+ */ function handleMainElementClick(_event) {
     // remove modal display
     (0, _removeMenuModal.removeMenuModal)();
     // toggle classlist for navbar burger
@@ -2806,7 +2817,11 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "removeMenuModal", ()=>removeMenuModal);
 var _elementCreators = require("./elementCreators");
-function removeMenuModal() {
+/**
+ * @description Removes the menu modal from the DOM. This function is called when the user clicks on the 'x' icon in the menu modal. It removes the modal from the DOM and replaces the 'x' icon with the burger lines.
+ * @function
+ * @returns {void}
+ */ function removeMenuModal() {
     const modalContainer = document.querySelector(".modal__container");
     if (modalContainer) (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
         "display"
@@ -3176,7 +3191,13 @@ parcelHelpers.export(exports, "handleNavbarBurgerClick", ()=>handleNavbarBurgerC
 parcelHelpers.export(exports, "removeMenuModal", ()=>(0, _removeMenuModal.removeMenuModal));
 var _displayMenuModal = require("../functions/displayMenuModal");
 var _removeMenuModal = require("../functions/removeMenuModal");
-function handleNavbarBurgerClick(_event) {
+/**
+ * Handles the click event on the navbar burger. It toggles the is-active class on the navbar burger and displays the menu modal.
+ * @function
+ * @param {HTMLDivElement} this - The navbar burger.
+ * @param {Event} _event - The click event.
+ * @returns {void}
+ */ function handleNavbarBurgerClick(_event) {
     this.classList.toggle("is-active");
     const isBurgerClicked = this.classList.contains("is-active");
     if (isBurgerClicked) (0, _displayMenuModal.displayMenuModal)();
@@ -3189,7 +3210,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "displayMenuModal", ()=>displayMenuModal);
 var _handleModalAnchorClick = require("../eventHandlers/handleModalAnchorClick");
 var _elementCreators = require("./elementCreators");
-function displayMenuModal() {
+/**
+ * @description - displays the modal menu on click of the navbar burger. It also changes the burger icon to an 'x' icon and adds event listeners to the modal anchors to close the modal on click.
+ * @function
+ * @returns {void}
+ */ function displayMenuModal() {
     const modalContainer = document.querySelector(".modal__container");
     if (modalContainer) (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
         "display"
@@ -3248,7 +3273,13 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "handleModalAnchorClick", ()=>handleModalAnchorClick);
 var _elementCreators = require("../functions/elementCreators");
 var _handleNavbarBurgerClick = require("./handleNavbarBurgerClick");
-function handleModalAnchorClick(_event) {
+/**
+ * Handles the click event on the anchor links in the modal menu. Removes the modal menu and removes the event listeners from the anchor links. This prevents memory leaks.
+ * @event click
+ * @param {HTMLAnchorElement} this - The anchor element that was clicked
+ * @param {Event} _event - The click event
+ * @returns {void}
+ */ function handleModalAnchorClick(_event) {
     // remove modal display
     (0, _handleNavbarBurgerClick.removeMenuModal)();
     // removes event listeners from anchor links to prevent memory leaks

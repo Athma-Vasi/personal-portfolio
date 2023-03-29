@@ -1,4 +1,5 @@
 import localforage from "localforage";
+
 import { handleMainElementClick } from "./eventHandlers/handleMainElementClick";
 import {
   handleNavbarBurgerClick,
@@ -7,7 +8,13 @@ import {
 import { handleWindowScroll } from "./eventHandlers/handleWindowScroll";
 import { addEvtListener } from "./functions/elementCreators";
 
-async function mainApp() {
+/**
+ * Main app function. This function is called after the DOM is loaded. It is responsible for adding event listeners to the navbar burger and the main element, adding an event listener to the window to display the header on scroll up and hide on scroll down, and removing the modal display on page load. Finally, it deletes localforage keys upon page exit.
+ * @function
+ * @async
+ * @returns {Promise<void>}
+ */
+async function mainApp(): Promise<void> {
   // remove modal display on page load
   removeMenuModal();
 

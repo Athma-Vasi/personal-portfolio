@@ -9,6 +9,11 @@ import {
   removeStylesFromElem,
 } from "./elementCreators";
 
+/**
+ * @description - displays the modal menu on click of the navbar burger. It also changes the burger icon to an 'x' icon and adds event listeners to the modal anchors to close the modal on click.
+ * @function
+ * @returns {void}
+ */
 function displayMenuModal(): void {
   const modalContainer =
     document.querySelector<HTMLDivElement>(".modal__container");

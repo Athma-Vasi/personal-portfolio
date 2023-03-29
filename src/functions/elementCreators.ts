@@ -301,6 +301,7 @@ const createImage =
 
     return classes.reduce((elem: HTMLImageElement, currClass: string) => {
       elem.classList.add(currClass);
+
       return elem;
     }, image);
   };
