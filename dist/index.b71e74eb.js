@@ -557,6 +557,9 @@ function hmrAccept(bundle, id) {
 }
 
 },{}],"h7u1C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _localforage = require("localforage");
+var _localforageDefault = parcelHelpers.interopDefault(_localforage);
 var _handleMainElementClick = require("./eventHandlers/handleMainElementClick");
 var _handleNavbarBurgerClick = require("./eventHandlers/handleNavbarBurgerClick");
 var _handleWindowScroll = require("./eventHandlers/handleWindowScroll");
@@ -572,548 +575,14 @@ async function mainApp() {
     if (main) (0, _elementCreators.addEvtListener)("click")((0, _handleMainElementClick.handleMainElementClick))(main);
     // add event listener to window to display header on scroll up and hide on scroll down
     window.addEventListener("scroll", (0, _handleWindowScroll.handleWindowScroll));
+    // delete localforage keys upon page exit
+    window.addEventListener("beforeunload", ()=>{
+        (0, _localforageDefault.default).removeItem("previousScrollPosition");
+    });
 }
 document.addEventListener("DOMContentLoaded", mainApp);
 
-},{"./eventHandlers/handleNavbarBurgerClick":"eHzcW","./eventHandlers/handleMainElementClick":"2atzh","./functions/elementCreators":"aeBTs","./eventHandlers/handleWindowScroll":"l06gq"}],"eHzcW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "handleNavbarBurgerClick", ()=>handleNavbarBurgerClick);
-parcelHelpers.export(exports, "removeMenuModal", ()=>(0, _removeMenuModal.removeMenuModal));
-var _displayMenuModal = require("../functions/displayMenuModal");
-var _removeMenuModal = require("../functions/removeMenuModal");
-function handleNavbarBurgerClick(_event) {
-    this.classList.toggle("is-active");
-    const isBurgerClicked = this.classList.contains("is-active");
-    console.log("isBurgerClicked: ", isBurgerClicked);
-    if (isBurgerClicked) (0, _displayMenuModal.displayMenuModal)();
-    else (0, _removeMenuModal.removeMenuModal)();
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../functions/displayMenuModal":"iFXrO","../functions/removeMenuModal":"dWMPM"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"iFXrO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "displayMenuModal", ()=>displayMenuModal);
-var _handleModalAnchorClick = require("../eventHandlers/handleModalAnchorClick");
-var _elementCreators = require("./elementCreators");
-function displayMenuModal() {
-    const modalContainer = document.querySelector(".modal__container");
-    if (modalContainer) (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
-        "display"
-    ]), (0, _elementCreators.addStylesToElem)([
-        [
-            "display",
-            "visible"
-        ]
-    ]))(modalContainer);
-    // remove burger lines to be replaced with 'x' icon
-    const navbarBurgerLines = document.querySelectorAll(".navbar__burger__line");
-    if (navbarBurgerLines) navbarBurgerLines.forEach((line)=>{
-        (0, _elementCreators.addStylesToElem)([
-            [
-                "display",
-                "none"
-            ]
-        ])(line);
-    });
-    // grab burger container to add 'x' icon and change the display to flex
-    const navbarBurger = document.querySelector(".navbar__burger");
-    if (navbarBurger) {
-        // add 'x' icon
-        (0, _elementCreators.pipe)((0, _elementCreators.addTextToElem)("⛌"), (0, _elementCreators.appendElemToParent)(navbarBurger))((0, _elementCreators.elemCreator)("p")([
-            "navbar__burger__x"
-        ]));
-        // change display to flex
-        (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
-            "display"
-        ]), (0, _elementCreators.addStylesToElem)([
-            [
-                "display",
-                "flex"
-            ],
-            [
-                "justify-content",
-                "center"
-            ],
-            [
-                "align-items",
-                "center"
-            ]
-        ]))(navbarBurger);
-    }
-    // add evt listeners to anchors to not display modal on click
-    // and remove evt listeners on click to prevent memory leaks
-    const modalAnchors = document.querySelectorAll(".modal__link");
-    if (modalAnchors) modalAnchors.forEach((anchor)=>{
-        (0, _elementCreators.addEvtListener)("click")((0, _handleModalAnchorClick.handleModalAnchorClick))(anchor);
-    });
-}
-
-},{"../eventHandlers/handleModalAnchorClick":"fSy7c","./elementCreators":"aeBTs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fSy7c":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "handleModalAnchorClick", ()=>handleModalAnchorClick);
-var _elementCreators = require("../functions/elementCreators");
-var _handleNavbarBurgerClick = require("./handleNavbarBurgerClick");
-function handleModalAnchorClick(_event) {
-    // remove modal display
-    (0, _handleNavbarBurgerClick.removeMenuModal)();
-    // removes event listeners from anchor links to prevent memory leaks
-    const modalAnchors = document.querySelectorAll(".modal__link");
-    if (modalAnchors) modalAnchors.forEach((anchor)=>{
-        (0, _elementCreators.removeEvtListener)("click")(handleModalAnchorClick)(anchor);
-    });
-}
-
-},{"../functions/elementCreators":"aeBTs","./handleNavbarBurgerClick":"eHzcW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aeBTs":[function(require,module,exports) {
-/**
- * Pipe function that takes variable number of functions and returns a function that takes a value. The returned function passes the value to the first function in the array of functions and passes the result of that function to the next function in the array and so on until the last function in the array is called. The result of the last function in the array is returned, or <void> if its a side effect function (append to DOM, add event listener, etc.) * 
- * 
- * @function
- * @param {...Array<(_: V) => any>} funcs - array of functions
- * @returns {(value: V) => any}
- * @example
- * pipe(
-		addTextToElem('Restart'),
-		addEvtListener('click')(restartGame),
-		appendElemToParent(winnerWrapper)
-	)(elemCreator('button')(['bttn-restart']));
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "elemCreator", ()=>elemCreator);
-parcelHelpers.export(exports, "addClassesToElem", ()=>addClassesToElem);
-parcelHelpers.export(exports, "removeClassesFromElem", ()=>removeClassesFromElem);
-parcelHelpers.export(exports, "appendElemToParent", ()=>appendElemToParent);
-parcelHelpers.export(exports, "addTextToElem", ()=>addTextToElem);
-parcelHelpers.export(exports, "addAttributeValuesToElem", ()=>addAttributeValuesToElem);
-parcelHelpers.export(exports, "removeAttributesFromElem", ()=>removeAttributesFromElem);
-parcelHelpers.export(exports, "createImage", ()=>createImage);
-parcelHelpers.export(exports, "addEvtListener", ()=>addEvtListener);
-parcelHelpers.export(exports, "removeEvtListener", ()=>removeEvtListener);
-parcelHelpers.export(exports, "addStylesToElem", ()=>addStylesToElem);
-parcelHelpers.export(exports, "removeStylesFromElem", ()=>removeStylesFromElem);
-parcelHelpers.export(exports, "pipe", ()=>pipe);
-parcelHelpers.export(exports, "parallelPipe", ()=>parallelPipe);
-const pipe = (...funcs)=>(value)=>funcs.reduce((res, func)=>func(res), value);
-// not ready for prime time
-// const asyncPipe =
-// 	<V, R>(...funcs: Array<(_: V) => Promise<R>>) =>
-// 	async (value: V): Promise<R> =>
-// 		funcs.reduce(
-// 			async (res: Promise<R>, func) => func(await res),
-// 			Promise.resolve(value)
-// 		);
-/**
- * Map is used to create an array of promises, and then Promise.all is used to resolve in parallel, all the promises in the array. The returned promise is wrapped in an async function that allows the caller to await the results of the parallel execution.
- *
- * @function
- * @param {...Array<(_: V) => Promise<R>>} funcs - array of functions
- * @returns {(value: V) => Promise<R>}
- */ const parallelPipe = (...funcs)=>async (value)=>Promise.all(funcs.map((func)=>func(value)));
-/**
- * Takes a string and returns a function that takes an array of strings. The returned function creates an HTML element with the string passed to the first function as the element type, and the array of strings passed to the returned function as the classes to add to the element.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string} elem - element type
- * @returns {(classes: string[]) => HTMLElement}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * // returns <div class="class1 class2"></div>
- *
- */ const elemCreator = (elem)=>(classes)=>{
-        const element = document.createElement(elem);
-        return classes.reduce((elem, currClass)=>{
-            elem.classList.add(currClass);
-            return elem;
-        }, element);
-    };
-/**
- * Takes an array of strings and returns a function that takes an HTML element. The returned function adds the classes to the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string[]} classes - array of strings
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addClassesToElem = addClassesToElem(['class3', 'class4'])(divWithClasses);
- * // returns <div class="class1 class2 class3 class4"></div>
- * @example using pipe
- * pipe(
- * addClassesToElem(['class3', 'class4'])
- * )(elemCreator('div')(['class1', 'class2']))
- * // returns <div class="class1 class2 class3 class4"></div>
- */ const addClassesToElem = (classes)=>(elem)=>{
-        return classes.reduce((element, currClass)=>{
-            if (element) element.classList.add(currClass);
-            return element;
-        }, elem);
-    };
-/**
- * Takes an array of strings and returns a function that takes an HTML element. The returned function removes the classes from the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string[]} classes - array of strings
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const removeClassesFromElem = removeClassesFromElem(['class1', 'class2'])(divWithClasses);
- * // returns <div></div>
- * @example using pipe
- * pipe(
- * removeClassesFromElem(['class1', 'class2'])
- * )(elemCreator('div')(['class1', 'class2']))
- * // returns <div></div>
- */ const removeClassesFromElem = (classes)=>(elem)=>{
-        return classes.reduce((element, currClass)=>{
-            if (element && element.classList.contains(currClass)) element.classList.remove(currClass);
-            return element;
-        }, elem);
-    };
-/**
- * Takes an array of arrays of attribute name and value, and returns a function that takes an HTML element. The returned function adds the attributes to the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string[]} attrVals - array of arrays of attribute name and value
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addAttrToElem = addAttributeToElem([['id', 'id1'], ['data-test', 'test']])(divWithClasses);
- * @example using pipe
- * pipe(
- * addAttributeToElem([['id', 'id1'], ['data-test', 'test']])
- * )(elemCreator('div')(['class1', 'class2']))
- */ const addAttributeValuesToElem = (attrVals)=>(elem)=>{
-        return attrVals.reduce((element, [attribute, value])=>{
-            if (!attribute || !value) return element;
-            if (element) element.setAttribute(attribute, value);
-            return element;
-        }, elem);
-    };
-/**
- * Takes an array of attribute names, and returns a function that takes an HTML element. The returned function removes the attributes from the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string[]} attrNames - array of attribute names
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addAttrToElem = addAttributeValuesToElem([['id', 'id1'], ['data-test', 'test']])(divWithClasses);
- * const removeAttrFromElem = removeAttributesFromElem(['id', 'data-test'])(addAttrToElem);
- * @example using pipe
- * pipe(
- * addAttributeValuesToElem([['id', 'id1'], ['data-test', 'test']]),
- * removeAttributesFromElem(['id', 'data-test'])
- * )(elemCreator('div')(['class1', 'class2']))
- */ const removeAttributesFromElem = (attrNames)=>(elem)=>{
-        return attrNames.reduce((element, attribute)=>{
-            if (element && element.hasAttribute(attribute)) element.removeAttribute(attribute);
-            return element;
-        }, elem);
-    };
-/**
- * Takes an array of arrays of style property and value, and returns a function that takes an HTML element. The returned function adds the style properties to the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string[]} stylePropVals - array of arrays of style property and value
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addStyleToElem = addStyleToElem([['background-color', 'red'], ['color', 'white']])(divWithClasses);
- * @example using pipe
- * pipe(
- * addStyleToElem([['background-color', 'red'], ['color', 'white']])
- * )(elemCreator('div')(['class1', 'class2']))
- *
- */ const addStylesToElem = (stylePropVals)=>(elem)=>{
-        return stylePropVals.reduce((element, [property, value])=>{
-            if (!property || !value) return element;
-            if (element) element.style.setProperty(property, value);
-            return element;
-        }, elem);
-    };
-/**
- * Takes styles properties and returns a function that takes an HTML element. The returned function removes the style properties from the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string} styleProp - style property to remove
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addStyleToElem = addStyleToElem([['background-color', 'red'], ['color', 'white']])(divWithClasses);
- */ const removeStylesFromElem = (styleProps)=>(elem)=>{
-        return styleProps.reduce((element, styleProp)=>{
-            if (element) element.style.removeProperty(styleProp);
-            return element;
-        }, elem);
-    };
-/**
- * Takes a string and returns a function that takes an HTML element. The returned function adds the text to the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string} text - text to add to element
- * @returns {(elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
- * @example using pipe
- * pipe(
- * addTextToElem('Hello World')
- * )(elemCreator('div')(['class1', 'class2']))
- *
- */ const addTextToElem = (text)=>(elem)=>{
-        const textNode = document.createTextNode(text);
-        if (elem) elem.appendChild(textNode);
-        return elem;
-    };
-/**
- * Takes an HTML element and returns a function that takes an HTML element. The returned function appends the element passed to it to the element passed to the first function. This is a side effect function and must be the last function in a pipe.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {HTMLElement | null} parent - parent element
- * @returns {(child: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
- * const appendElemToParent = appendElemToParent(document.body)(divWithClasses);
- * @example using pipe
- * pipe(
- * addTextToElem('Hello World'),
- * appendElemToParent(document.body)
- * )(elemCreator('div')(['class1', 'class2']))
- */ const appendElemToParent = (parent)=>(child)=>{
-        if (child && parent) parent.appendChild(child);
-    };
-/**
- * Takes a source as a string and returns a function that takes an array of classes as strings and returns a function that takes an alt text string and returns a function that takes a title string. The returned function creates an HTML image element with the source, alt text, and title passed to the functions.
- *
- * @function
- * @param {string} source - image source
- * @returns {(classes: string[]) => (alt: string) => (title: string) => HTMLImageElement}
- * @example
- * const imgWithClasses = createImage('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png')(['class1', 'class2'])('Google Logo')('Google Logo');
- * // returns <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" title="Google Logo" class="class1 class2">
- */ const createImage = (source)=>(classes)=>(alt)=>(title)=>{
-                const image = new Image();
-                image.src = source;
-                image.alt = alt;
-                image.title = title;
-                return classes.reduce((elem, currClass)=>{
-                    elem.classList.add(currClass);
-                    return elem;
-                }, image);
-            };
-/**
- * Takes an event as a string and returns a function that takes a function that takes an event and returns a function that takes an HTML element. The returned function adds an event listener to the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string} evt - event to listen for
- * @returns {(handleEvt: (this: any, ev: any, options?: { capture?: boolean; once?: boolean; passive?: boolean; signal?: AbortSignal; }) => unknown) => (elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
- * const appendElemToParent = appendElemToParent(document.body)(divWithClasses);
- * const addClickEvtListener = addEvtListener('click')((e) => console.log(e))(divWithClasses);
- * @example using pipe
- * pipe(
- * addTextToElem('Hello World'),
- * addEvtListener('click')((e) => console.log(e)),
- * appendElemToParent(document.body),
- * )(elemCreator('div')(['class1', 'class2']))
- */ const addEvtListener = (evt)=>(handleEvt)=>(elem)=>{
-            if (elem) elem.addEventListener(evt, handleEvt);
-            return elem;
-        };
-/**
- * Takes an event as a string and returns a function that takes a function that takes an event and returns a function that takes an HTML element. The returned function removes an event listener from the element passed to it.
- * Structured as a curried function to be used with the pipe function.
- *
- * @function
- * @param {string} evt - event to remove listener for
- * @returns {(handleEvt: (this: any, ev: any, options?: { capture?: boolean; once?: boolean; passive?: boolean; signal?: AbortSignal; }) => unknown) => (elem: HTMLElement | null) => HTMLElement | null}
- * @example
- * const divWithClasses = elemCreator('div')(['class1', 'class2']);
- * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
- * const appendElemToParent = appendElemToParent(document.body)(divWithClasses);
- * const addClickEvtListener = addEvtListener('click')((e) => console.log(e))(divWithClasses);
- * const removeClickEvtListener = removeEvtListener('click')((e) => console.log(e))(divWithClasses);
- * @example using pipe
- * pipe(
- * addTextToElem('Hello World'),
- * addEvtListener('click')((e) => console.log(e)),
- * removeEvtListener('click')((e) => console.log(e)),
- * appendElemToParent(document.body),
- * )(elemCreator('div')(['class1', 'class2']))
- */ const removeEvtListener = (evt)=>(handleEvt)=>(elem)=>{
-            if (elem) elem.removeEventListener(evt, handleEvt);
-            return elem;
-        };
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dWMPM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "removeMenuModal", ()=>removeMenuModal);
-var _elementCreators = require("./elementCreators");
-function removeMenuModal() {
-    const modalContainer = document.querySelector(".modal__container");
-    if (modalContainer) (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
-        "display"
-    ]), (0, _elementCreators.addStylesToElem)([
-        [
-            "display",
-            "none"
-        ]
-    ]))(modalContainer);
-    // remove 'x' icon to be replaced with burger lines
-    const navbarBurgerX = document.querySelector(".navbar__burger__x");
-    if (navbarBurgerX) navbarBurgerX.remove();
-    // grab burger container to change the display to block
-    const navbarBurger = document.querySelector(".navbar__burger");
-    if (navbarBurger) // change display to block and remove flex properties
-    (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
-        "display",
-        "justify-content",
-        "align-items"
-    ]), (0, _elementCreators.addStylesToElem)([
-        [
-            "display",
-            "block"
-        ]
-    ]))(navbarBurger);
-    // display burger lines again
-    const navbarBurgerLines = document.querySelectorAll(".navbar__burger__line");
-    if (navbarBurgerLines) navbarBurgerLines.forEach((line)=>{
-        (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
-            "display"
-        ]), (0, _elementCreators.addStylesToElem)([
-            [
-                "display",
-                "visible"
-            ]
-        ]))(line);
-    });
-}
-
-},{"./elementCreators":"aeBTs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2atzh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "handleMainElementClick", ()=>handleMainElementClick);
-var _removeMenuModal = require("../functions/removeMenuModal");
-function handleMainElementClick(_event) {
-    // remove modal display
-    (0, _removeMenuModal.removeMenuModal)();
-    // toggle classlist for navbar burger
-    const navbarBurger = document.querySelector(".navbar__burger");
-    if (navbarBurger) navbarBurger.classList.toggle("is-active");
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../functions/removeMenuModal":"dWMPM"}],"l06gq":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "handleWindowScroll", ()=>handleWindowScroll);
-var _localforage = require("localforage");
-var _localforageDefault = parcelHelpers.interopDefault(_localforage);
-var _elementCreators = require("../functions/elementCreators");
-/**
- * @description Handles window scroll event. Displays header on scroll up and hides on scroll down. Stores current scroll position in localforage.
- * @function handleWindowScroll
- * @param {Window} this - window object
- * @param {Event} _event - window scroll event
- * @returns {Promise<void>} - void
- */ async function handleWindowScroll(_event) {
-    // grab previous scroll position from localforage
-    let previousScrollPosition = null;
-    try {
-        previousScrollPosition = await (0, _localforageDefault.default).getItem("previousScrollPosition");
-    } catch (error) {
-        const error_ = new Error(error, {
-            cause: "Error getting previousScrollPosition from localforage"
-        });
-        console.group("Error in handleWindowScroll event handler");
-        console.error("name: ", error_.name);
-        console.error("message: ", error_.message);
-        console.error("cause: ", error_.cause);
-        console.groupCollapsed("stack trace");
-        console.trace(error_);
-        console.error("detailed stack trace", error_.stack);
-        console.groupEnd();
-    }
-    const header = document.querySelector(".header");
-    const modalContainer = document.querySelector(".modal__container");
-    // get current scroll position
-    const currentScrollPosition = this.scrollY;
-    // if previousScrollPosition is null, set it to currentScrollPosition
-    if (previousScrollPosition === null) previousScrollPosition = currentScrollPosition;
-    // determine scroll direction
-    const scrollDirection = currentScrollPosition > previousScrollPosition ? "down" : "up";
-    // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
-    // if modalContainer is displayed, then header is stickied to top of page
-    if (header && modalContainer && modalContainer.style.display === "none") {
-        if (scrollDirection === "down") (0, _elementCreators.addClassesToElem)([
-            "header--hidden"
-        ])(header);
-        else (0, _elementCreators.removeClassesFromElem)([
-            "header--hidden"
-        ])(header);
-    }
-    // store current scroll position in localforage
-    try {
-        await (0, _localforageDefault.default).setItem("previousScrollPosition", currentScrollPosition);
-    } catch (error) {
-        const error_ = new Error(error, {
-            cause: "Error setting currentScrollPosition in localforage"
-        });
-        console.group("Error in handleWindowScroll event handler");
-        console.error("name: ", error_.name);
-        console.error("message: ", error_.message);
-        console.error("cause: ", error_.cause);
-        console.groupCollapsed("stack trace");
-        console.trace(error_);
-        console.error("detailed stack trace", error_.stack);
-        console.groupEnd();
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","localforage":"cTE28","../functions/elementCreators":"aeBTs"}],"cTE28":[function(require,module,exports) {
+},{"localforage":"cTE28","./eventHandlers/handleMainElementClick":"2atzh","./eventHandlers/handleNavbarBurgerClick":"eHzcW","./eventHandlers/handleWindowScroll":"l06gq","./functions/elementCreators":"aeBTs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cTE28":[function(require,module,exports) {
 var global = arguments[3];
 /*!
     localForage -- Offline Storage, Improved
@@ -3319,6 +2788,538 @@ var global = arguments[3];
     ])(4);
 });
 
-},{}]},["3LmCz","h7u1C"], "h7u1C", "parcelRequiref510")
+},{}],"2atzh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handleMainElementClick", ()=>handleMainElementClick);
+var _removeMenuModal = require("../functions/removeMenuModal");
+function handleMainElementClick(_event) {
+    // remove modal display
+    (0, _removeMenuModal.removeMenuModal)();
+    // toggle classlist for navbar burger
+    const navbarBurger = document.querySelector(".navbar__burger");
+    if (navbarBurger) navbarBurger.classList.toggle("is-active");
+}
+
+},{"../functions/removeMenuModal":"dWMPM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dWMPM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "removeMenuModal", ()=>removeMenuModal);
+var _elementCreators = require("./elementCreators");
+function removeMenuModal() {
+    const modalContainer = document.querySelector(".modal__container");
+    if (modalContainer) (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
+        "display"
+    ]), (0, _elementCreators.addStylesToElem)([
+        [
+            "display",
+            "none"
+        ]
+    ]))(modalContainer);
+    // remove 'x' icon to be replaced with burger lines
+    const navbarBurgerX = document.querySelector(".navbar__burger__x");
+    if (navbarBurgerX) navbarBurgerX.remove();
+    // grab burger container to change the display to block
+    const navbarBurger = document.querySelector(".navbar__burger");
+    if (navbarBurger) // change display to block and remove flex properties
+    (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
+        "display",
+        "justify-content",
+        "align-items"
+    ]), (0, _elementCreators.addStylesToElem)([
+        [
+            "display",
+            "block"
+        ]
+    ]))(navbarBurger);
+    // display burger lines again
+    const navbarBurgerLines = document.querySelectorAll(".navbar__burger__line");
+    if (navbarBurgerLines) navbarBurgerLines.forEach((line)=>{
+        (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
+            "display"
+        ]), (0, _elementCreators.addStylesToElem)([
+            [
+                "display",
+                "visible"
+            ]
+        ]))(line);
+    });
+}
+
+},{"./elementCreators":"aeBTs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aeBTs":[function(require,module,exports) {
+/**
+ * Pipe function that takes variable number of functions and returns a function that takes a value. The returned function passes the value to the first function in the array of functions and passes the result of that function to the next function in the array and so on until the last function in the array is called. The result of the last function in the array is returned, or <void> if its a side effect function (append to DOM, add event listener, etc.) * 
+ * 
+ * @function
+ * @param {...Array<(_: V) => any>} funcs - array of functions
+ * @returns {(value: V) => any}
+ * @example
+ * pipe(
+		addTextToElem('Restart'),
+		addEvtListener('click')(restartGame),
+		appendElemToParent(winnerWrapper)
+	)(elemCreator('button')(['bttn-restart']));
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "elemCreator", ()=>elemCreator);
+parcelHelpers.export(exports, "addClassesToElem", ()=>addClassesToElem);
+parcelHelpers.export(exports, "removeClassesFromElem", ()=>removeClassesFromElem);
+parcelHelpers.export(exports, "appendElemToParent", ()=>appendElemToParent);
+parcelHelpers.export(exports, "addTextToElem", ()=>addTextToElem);
+parcelHelpers.export(exports, "addAttributeValuesToElem", ()=>addAttributeValuesToElem);
+parcelHelpers.export(exports, "removeAttributesFromElem", ()=>removeAttributesFromElem);
+parcelHelpers.export(exports, "createImage", ()=>createImage);
+parcelHelpers.export(exports, "addEvtListener", ()=>addEvtListener);
+parcelHelpers.export(exports, "removeEvtListener", ()=>removeEvtListener);
+parcelHelpers.export(exports, "addStylesToElem", ()=>addStylesToElem);
+parcelHelpers.export(exports, "removeStylesFromElem", ()=>removeStylesFromElem);
+parcelHelpers.export(exports, "pipe", ()=>pipe);
+parcelHelpers.export(exports, "parallelPipe", ()=>parallelPipe);
+const pipe = (...funcs)=>(value)=>funcs.reduce((res, func)=>func(res), value);
+// not ready for prime time
+// const asyncPipe =
+// 	<V, R>(...funcs: Array<(_: V) => Promise<R>>) =>
+// 	async (value: V): Promise<R> =>
+// 		funcs.reduce(
+// 			async (res: Promise<R>, func) => func(await res),
+// 			Promise.resolve(value)
+// 		);
+/**
+ * Map is used to create an array of promises, and then Promise.all is used to resolve in parallel, all the promises in the array. The returned promise is wrapped in an async function that allows the caller to await the results of the parallel execution.
+ *
+ * @function
+ * @param {...Array<(_: V) => Promise<R>>} funcs - array of functions
+ * @returns {(value: V) => Promise<R>}
+ */ const parallelPipe = (...funcs)=>async (value)=>Promise.all(funcs.map((func)=>func(value)));
+/**
+ * Takes a string and returns a function that takes an array of strings. The returned function creates an HTML element with the string passed to the first function as the element type, and the array of strings passed to the returned function as the classes to add to the element.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string} elem - element type
+ * @returns {(classes: string[]) => HTMLElement}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * // returns <div class="class1 class2"></div>
+ *
+ */ const elemCreator = (elem)=>(classes)=>{
+        const element = document.createElement(elem);
+        return classes.reduce((elem, currClass)=>{
+            elem.classList.add(currClass);
+            return elem;
+        }, element);
+    };
+/**
+ * Takes an array of strings and returns a function that takes an HTML element. The returned function adds the classes to the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string[]} classes - array of strings
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addClassesToElem = addClassesToElem(['class3', 'class4'])(divWithClasses);
+ * // returns <div class="class1 class2 class3 class4"></div>
+ * @example using pipe
+ * pipe(
+ * addClassesToElem(['class3', 'class4'])
+ * )(elemCreator('div')(['class1', 'class2']))
+ * // returns <div class="class1 class2 class3 class4"></div>
+ */ const addClassesToElem = (classes)=>(elem)=>{
+        return classes.reduce((element, currClass)=>{
+            if (element) element.classList.add(currClass);
+            return element;
+        }, elem);
+    };
+/**
+ * Takes an array of strings and returns a function that takes an HTML element. The returned function removes the classes from the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string[]} classes - array of strings
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const removeClassesFromElem = removeClassesFromElem(['class1', 'class2'])(divWithClasses);
+ * // returns <div></div>
+ * @example using pipe
+ * pipe(
+ * removeClassesFromElem(['class1', 'class2'])
+ * )(elemCreator('div')(['class1', 'class2']))
+ * // returns <div></div>
+ */ const removeClassesFromElem = (classes)=>(elem)=>{
+        return classes.reduce((element, currClass)=>{
+            if (element && element.classList.contains(currClass)) element.classList.remove(currClass);
+            return element;
+        }, elem);
+    };
+/**
+ * Takes an array of arrays of attribute name and value, and returns a function that takes an HTML element. The returned function adds the attributes to the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string[]} attrVals - array of arrays of attribute name and value
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addAttrToElem = addAttributeToElem([['id', 'id1'], ['data-test', 'test']])(divWithClasses);
+ * @example using pipe
+ * pipe(
+ * addAttributeToElem([['id', 'id1'], ['data-test', 'test']])
+ * )(elemCreator('div')(['class1', 'class2']))
+ */ const addAttributeValuesToElem = (attrVals)=>(elem)=>{
+        return attrVals.reduce((element, [attribute, value])=>{
+            if (!attribute || !value) return element;
+            if (element) element.setAttribute(attribute, value);
+            return element;
+        }, elem);
+    };
+/**
+ * Takes an array of attribute names, and returns a function that takes an HTML element. The returned function removes the attributes from the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string[]} attrNames - array of attribute names
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addAttrToElem = addAttributeValuesToElem([['id', 'id1'], ['data-test', 'test']])(divWithClasses);
+ * const removeAttrFromElem = removeAttributesFromElem(['id', 'data-test'])(addAttrToElem);
+ * @example using pipe
+ * pipe(
+ * addAttributeValuesToElem([['id', 'id1'], ['data-test', 'test']]),
+ * removeAttributesFromElem(['id', 'data-test'])
+ * )(elemCreator('div')(['class1', 'class2']))
+ */ const removeAttributesFromElem = (attrNames)=>(elem)=>{
+        return attrNames.reduce((element, attribute)=>{
+            if (element && element.hasAttribute(attribute)) element.removeAttribute(attribute);
+            return element;
+        }, elem);
+    };
+/**
+ * Takes an array of arrays of style property and value, and returns a function that takes an HTML element. The returned function adds the style properties to the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string[]} stylePropVals - array of arrays of style property and value
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addStyleToElem = addStyleToElem([['background-color', 'red'], ['color', 'white']])(divWithClasses);
+ * @example using pipe
+ * pipe(
+ * addStyleToElem([['background-color', 'red'], ['color', 'white']])
+ * )(elemCreator('div')(['class1', 'class2']))
+ *
+ */ const addStylesToElem = (stylePropVals)=>(elem)=>{
+        return stylePropVals.reduce((element, [property, value])=>{
+            if (!property || !value) return element;
+            if (element) element.style.setProperty(property, value);
+            return element;
+        }, elem);
+    };
+/**
+ * Takes styles properties and returns a function that takes an HTML element. The returned function removes the style properties from the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string} styleProp - style property to remove
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addStyleToElem = addStyleToElem([['background-color', 'red'], ['color', 'white']])(divWithClasses);
+ */ const removeStylesFromElem = (styleProps)=>(elem)=>{
+        return styleProps.reduce((element, styleProp)=>{
+            if (element) element.style.removeProperty(styleProp);
+            return element;
+        }, elem);
+    };
+/**
+ * Takes a string and returns a function that takes an HTML element. The returned function adds the text to the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string} text - text to add to element
+ * @returns {(elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
+ * @example using pipe
+ * pipe(
+ * addTextToElem('Hello World')
+ * )(elemCreator('div')(['class1', 'class2']))
+ *
+ */ const addTextToElem = (text)=>(elem)=>{
+        const textNode = document.createTextNode(text);
+        if (elem) elem.appendChild(textNode);
+        return elem;
+    };
+/**
+ * Takes an HTML element and returns a function that takes an HTML element. The returned function appends the element passed to it to the element passed to the first function. This is a side effect function and must be the last function in a pipe.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {HTMLElement | null} parent - parent element
+ * @returns {(child: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
+ * const appendElemToParent = appendElemToParent(document.body)(divWithClasses);
+ * @example using pipe
+ * pipe(
+ * addTextToElem('Hello World'),
+ * appendElemToParent(document.body)
+ * )(elemCreator('div')(['class1', 'class2']))
+ */ const appendElemToParent = (parent)=>(child)=>{
+        if (child && parent) parent.appendChild(child);
+    };
+/**
+ * Takes a source as a string and returns a function that takes an array of classes as strings and returns a function that takes an alt text string and returns a function that takes a title string. The returned function creates an HTML image element with the source, alt text, and title passed to the functions.
+ *
+ * @function
+ * @param {string} source - image source
+ * @returns {(classes: string[]) => (alt: string) => (title: string) => HTMLImageElement}
+ * @example
+ * const imgWithClasses = createImage('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png')(['class1', 'class2'])('Google Logo')('Google Logo');
+ * // returns <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" title="Google Logo" class="class1 class2">
+ */ const createImage = (source)=>(classes)=>(alt)=>(title)=>{
+                const image = new Image();
+                image.src = source;
+                image.alt = alt;
+                image.title = title;
+                return classes.reduce((elem, currClass)=>{
+                    elem.classList.add(currClass);
+                    return elem;
+                }, image);
+            };
+/**
+ * Takes an event as a string and returns a function that takes a function that takes an event and returns a function that takes an HTML element. The returned function adds an event listener to the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string} evt - event to listen for
+ * @returns {(handleEvt: (this: any, ev: any, options?: { capture?: boolean; once?: boolean; passive?: boolean; signal?: AbortSignal; }) => unknown) => (elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
+ * const appendElemToParent = appendElemToParent(document.body)(divWithClasses);
+ * const addClickEvtListener = addEvtListener('click')((e) => console.log(e))(divWithClasses);
+ * @example using pipe
+ * pipe(
+ * addTextToElem('Hello World'),
+ * addEvtListener('click')((e) => console.log(e)),
+ * appendElemToParent(document.body),
+ * )(elemCreator('div')(['class1', 'class2']))
+ */ const addEvtListener = (evt)=>(handleEvt)=>(elem)=>{
+            if (elem) elem.addEventListener(evt, handleEvt);
+            return elem;
+        };
+/**
+ * Takes an event as a string and returns a function that takes a function that takes an event and returns a function that takes an HTML element. The returned function removes an event listener from the element passed to it.
+ * Structured as a curried function to be used with the pipe function.
+ *
+ * @function
+ * @param {string} evt - event to remove listener for
+ * @returns {(handleEvt: (this: any, ev: any, options?: { capture?: boolean; once?: boolean; passive?: boolean; signal?: AbortSignal; }) => unknown) => (elem: HTMLElement | null) => HTMLElement | null}
+ * @example
+ * const divWithClasses = elemCreator('div')(['class1', 'class2']);
+ * const addTextToElem = addTextToElem('Hello World')(divWithClasses);
+ * const appendElemToParent = appendElemToParent(document.body)(divWithClasses);
+ * const addClickEvtListener = addEvtListener('click')((e) => console.log(e))(divWithClasses);
+ * const removeClickEvtListener = removeEvtListener('click')((e) => console.log(e))(divWithClasses);
+ * @example using pipe
+ * pipe(
+ * addTextToElem('Hello World'),
+ * addEvtListener('click')((e) => console.log(e)),
+ * removeEvtListener('click')((e) => console.log(e)),
+ * appendElemToParent(document.body),
+ * )(elemCreator('div')(['class1', 'class2']))
+ */ const removeEvtListener = (evt)=>(handleEvt)=>(elem)=>{
+            if (elem) elem.removeEventListener(evt, handleEvt);
+            return elem;
+        };
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"eHzcW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handleNavbarBurgerClick", ()=>handleNavbarBurgerClick);
+parcelHelpers.export(exports, "removeMenuModal", ()=>(0, _removeMenuModal.removeMenuModal));
+var _displayMenuModal = require("../functions/displayMenuModal");
+var _removeMenuModal = require("../functions/removeMenuModal");
+function handleNavbarBurgerClick(_event) {
+    this.classList.toggle("is-active");
+    const isBurgerClicked = this.classList.contains("is-active");
+    if (isBurgerClicked) (0, _displayMenuModal.displayMenuModal)();
+    else (0, _removeMenuModal.removeMenuModal)();
+}
+
+},{"../functions/displayMenuModal":"iFXrO","../functions/removeMenuModal":"dWMPM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFXrO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "displayMenuModal", ()=>displayMenuModal);
+var _handleModalAnchorClick = require("../eventHandlers/handleModalAnchorClick");
+var _elementCreators = require("./elementCreators");
+function displayMenuModal() {
+    const modalContainer = document.querySelector(".modal__container");
+    if (modalContainer) (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
+        "display"
+    ]), (0, _elementCreators.addStylesToElem)([
+        [
+            "display",
+            "visible"
+        ]
+    ]))(modalContainer);
+    // remove burger lines to be replaced with 'x' icon
+    const navbarBurgerLines = document.querySelectorAll(".navbar__burger__line");
+    if (navbarBurgerLines) navbarBurgerLines.forEach((line)=>{
+        (0, _elementCreators.addStylesToElem)([
+            [
+                "display",
+                "none"
+            ]
+        ])(line);
+    });
+    // grab burger container to add 'x' icon and change the display to flex
+    const navbarBurger = document.querySelector(".navbar__burger");
+    if (navbarBurger) {
+        // add 'x' icon
+        (0, _elementCreators.pipe)((0, _elementCreators.addTextToElem)("⛌"), (0, _elementCreators.appendElemToParent)(navbarBurger))((0, _elementCreators.elemCreator)("p")([
+            "navbar__burger__x"
+        ]));
+        // change display to flex
+        (0, _elementCreators.pipe)((0, _elementCreators.removeStylesFromElem)([
+            "display"
+        ]), (0, _elementCreators.addStylesToElem)([
+            [
+                "display",
+                "flex"
+            ],
+            [
+                "justify-content",
+                "center"
+            ],
+            [
+                "align-items",
+                "center"
+            ]
+        ]))(navbarBurger);
+    }
+    // add evt listeners to anchors to not display modal on click
+    // and remove evt listeners on click to prevent memory leaks
+    const modalAnchors = document.querySelectorAll(".modal__link");
+    if (modalAnchors) modalAnchors.forEach((anchor)=>{
+        (0, _elementCreators.addEvtListener)("click")((0, _handleModalAnchorClick.handleModalAnchorClick))(anchor);
+    });
+}
+
+},{"../eventHandlers/handleModalAnchorClick":"fSy7c","./elementCreators":"aeBTs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fSy7c":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handleModalAnchorClick", ()=>handleModalAnchorClick);
+var _elementCreators = require("../functions/elementCreators");
+var _handleNavbarBurgerClick = require("./handleNavbarBurgerClick");
+function handleModalAnchorClick(_event) {
+    // remove modal display
+    (0, _handleNavbarBurgerClick.removeMenuModal)();
+    // removes event listeners from anchor links to prevent memory leaks
+    const modalAnchors = document.querySelectorAll(".modal__link");
+    if (modalAnchors) modalAnchors.forEach((anchor)=>{
+        (0, _elementCreators.removeEvtListener)("click")(handleModalAnchorClick)(anchor);
+    });
+}
+
+},{"../functions/elementCreators":"aeBTs","./handleNavbarBurgerClick":"eHzcW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l06gq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handleWindowScroll", ()=>handleWindowScroll);
+var _localforage = require("localforage");
+var _localforageDefault = parcelHelpers.interopDefault(_localforage);
+var _elementCreators = require("../functions/elementCreators");
+/**
+ * @description Handles window scroll event. Displays header on scroll up and hides on scroll down. Stores scroll position in localforage.
+ * @function handleWindowScroll
+ * @param {Window} this - window object
+ * @param {Event} _event - window scroll event
+ * @returns {Promise<void>} - void
+ */ async function handleWindowScroll(_event) {
+    // grab previous scroll position from localforage
+    let previousScrollPosition = null;
+    try {
+        previousScrollPosition = await (0, _localforageDefault.default).getItem("previousScrollPosition");
+    } catch (error) {
+        const error_ = new Error(error, {
+            cause: "Error getting previousScrollPosition from localforage"
+        });
+        console.group("Error in handleWindowScroll event handler");
+        console.error("name: ", error_.name);
+        console.error("message: ", error_.message);
+        console.error("cause: ", error_.cause);
+        console.groupCollapsed("stack trace");
+        console.trace(error_);
+        console.groupEnd();
+    }
+    const currentScrollPosition = this.scrollY;
+    if (previousScrollPosition === null) previousScrollPosition = currentScrollPosition;
+    const scrollDirection = currentScrollPosition > previousScrollPosition ? "down" : "up";
+    const header = document.querySelector(".header");
+    const modalContainer = document.querySelector(".modal__container");
+    // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
+    // if modalContainer is displayed, then header is stickied to top of page
+    if (header && modalContainer && modalContainer.style.display === "none") {
+        if (scrollDirection === "down") (0, _elementCreators.addClassesToElem)([
+            "header--hidden"
+        ])(header);
+        else (0, _elementCreators.removeClassesFromElem)([
+            "header--hidden"
+        ])(header);
+    }
+    // store current scroll position in localforage
+    try {
+        await (0, _localforageDefault.default).setItem("previousScrollPosition", currentScrollPosition);
+    } catch (error) {
+        const error_ = new Error(error, {
+            cause: "Error setting currentScrollPosition in localforage"
+        });
+        console.group("Error in handleWindowScroll event handler");
+        console.error("name: ", error_.name);
+        console.error("message: ", error_.message);
+        console.error("cause: ", error_.cause);
+        console.groupCollapsed("stack trace");
+        console.trace(error_);
+        console.groupEnd();
+    }
+}
+
+},{"localforage":"cTE28","../functions/elementCreators":"aeBTs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3LmCz","h7u1C"], "h7u1C", "parcelRequiref510")
 
 //# sourceMappingURL=index.b71e74eb.js.map

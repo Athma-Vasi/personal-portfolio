@@ -1,3 +1,4 @@
+import localforage from "localforage";
 import { handleMainElementClick } from "./eventHandlers/handleMainElementClick";
 import {
   handleNavbarBurgerClick,
@@ -24,6 +25,11 @@ async function mainApp() {
 
   // add event listener to window to display header on scroll up and hide on scroll down
   window.addEventListener("scroll", handleWindowScroll);
+
+  // delete localforage keys upon page exit
+  window.addEventListener("beforeunload", () => {
+    localforage.removeItem("previousScrollPosition");
+  });
 }
 
 document.addEventListener("DOMContentLoaded", mainApp);

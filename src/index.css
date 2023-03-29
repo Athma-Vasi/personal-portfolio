@@ -33,13 +33,19 @@
   --font-size-large: clamp(2rem, 3vw, 4rem);
   --font-size-xlarge: clamp(3rem, 4vw, 5rem);
   --font-size-xxlarge: clamp(4rem, 5vw, 6rem);
-  --font-size-hero: clamp(5.5rem, 10vw, 10rem);
+  --font-size-hero: clamp(5.5rem, 10vw, 12rem);
 
   --font-weight-light: 300;
   --font-weight-reg: 400;
   --font-weight-medium: 500;
 
   --font-hero: var(--font-weight-medium) var(--font-size-hero)
+    var(--font-family);
+
+  /* logo font */
+  --font-logo--desktop: var(--font-weight-light) var(--font-size-xlarge)
+    var(--font-family);
+  --font-logo--mobile: var(--font-weight-light) var(--font-size-xxlarge)
     var(--font-family);
 
   /* links font */
@@ -190,10 +196,19 @@ a:hover {
 }
 
 .navbar__logo {
-  font: var(--font-hero);
-  color: var(--colour-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: var(--font-logo--desktop);
+  color: var(--colour-accent-bold);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing);
+  height: clamp(3rem, 5vw, 5rem);
+}
+
+.navbar__logo-A {
+  transform: rotate(180deg);
+  transition: all 0.382s ease-in-out;
 }
 
 .navbar__links {
@@ -204,7 +219,6 @@ a:hover {
   column-gap: var(--spacing-plus);
   width: 62%;
   margin-left: auto;
-  outline: 1px solid gainsboro;
 }
 .navbar__links a {
   font: var(--font-links-desktop);
@@ -493,7 +507,6 @@ a:hover {
 
   /* navbar */
   .navbar {
-    outline: 1px solid gray;
     /* height: clamp(4rem, 8vh, 8rem); */
     display: flex;
     flex-direction: row;

@@ -4,10 +4,9 @@ import {
   addClassesToElem,
   removeClassesFromElem,
 } from "../functions/elementCreators";
-import { removeMenuModal } from "./handleNavbarBurgerClick";
 
 /**
- * @description Handles window scroll event. Displays header on scroll up and hides on scroll down. Stores current scroll position in localforage.
+ * @description Handles window scroll event. Displays header on scroll up and hides on scroll down. Stores scroll position in localforage.
  * @function handleWindowScroll
  * @param {Window} this - window object
  * @param {Event} _event - window scroll event
@@ -31,25 +30,21 @@ async function handleWindowScroll(this: Window, _event: Event): Promise<void> {
     console.error("cause: ", error_.cause);
     console.groupCollapsed("stack trace");
     console.trace(error_);
-    console.error("detailed stack trace", error_.stack);
     console.groupEnd();
   }
 
-  const header = document.querySelector<HTMLElement>(".header");
-  const modalContainer =
-    document.querySelector<HTMLElement>(".modal__container");
-
-  // get current scroll position
   const currentScrollPosition = this.scrollY;
 
-  // if previousScrollPosition is null, set it to currentScrollPosition
   if (previousScrollPosition === null) {
     previousScrollPosition = currentScrollPosition;
   }
 
-  // determine scroll direction
   const scrollDirection =
     currentScrollPosition > previousScrollPosition ? "down" : "up";
+
+  const header = document.querySelector<HTMLElement>(".header");
+  const modalContainer =
+    document.querySelector<HTMLDivElement>(".modal__container");
 
   // if header and modalContainer exist, and modalContainer is not displayed, then add/remove header--hidden class
   // if modalContainer is displayed, then header is stickied to top of page
@@ -78,7 +73,6 @@ async function handleWindowScroll(this: Window, _event: Event): Promise<void> {
     console.error("cause: ", error_.cause);
     console.groupCollapsed("stack trace");
     console.trace(error_);
-    console.error("detailed stack trace", error_.stack);
     console.groupEnd();
   }
 }

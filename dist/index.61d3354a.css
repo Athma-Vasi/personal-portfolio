@@ -25,11 +25,13 @@
   --font-size-large: clamp(2rem, 3vw, 4rem);
   --font-size-xlarge: clamp(3rem, 4vw, 5rem);
   --font-size-xxlarge: clamp(4rem, 5vw, 6rem);
-  --font-size-hero: clamp(5.5rem, 10vw, 10rem);
+  --font-size-hero: clamp(5.5rem, 10vw, 12rem);
   --font-weight-light: 300;
   --font-weight-reg: 400;
   --font-weight-medium: 500;
   --font-hero: var(--font-weight-medium) var(--font-size-hero) var(--font-family);
+  --font-logo--desktop: var(--font-weight-light) var(--font-size-xlarge) var(--font-family);
+  --font-logo--mobile: var(--font-weight-light) var(--font-size-xxlarge) var(--font-family);
   --font-links-desktop: var(--font-weight-medium) var(--font-size-large) var(--font-family);
   --font-links-mobile: var(--font-weight-medium) var(--font-size-xlarge) var(--font-family);
   --font-title-desktop: var(--font-weight-medium) var(--font-size-xxlarge) var(--font-family);
@@ -147,10 +149,19 @@ a:hover {
 }
 
 .navbar__logo {
-  font: var(--font-hero);
-  color: var(--colour-text);
+  font: var(--font-logo--desktop);
+  color: var(--colour-accent-bold);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing);
+  height: clamp(3rem, 5vw, 5rem);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.navbar__logo-A {
+  transition: all .382s ease-in-out;
+  transform: rotate(180deg);
 }
 
 .navbar__links {
@@ -158,7 +169,6 @@ a:hover {
   align-items: center;
   column-gap: var(--spacing-plus);
   width: 62%;
-  outline: 1px solid #dcdcdc;
   flex-direction: row;
   margin-left: auto;
   display: flex;
@@ -433,7 +443,6 @@ a:hover {
   .navbar {
     height: 100%;
     background: var(--colour-navbar-background);
-    outline: 1px solid gray;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
