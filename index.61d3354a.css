@@ -35,17 +35,19 @@
   --font-logo--mobile: var(--font-weight-light) var(--font-size-xxlarge) var(--font-family);
   --font-links-desktop: var(--font-weight-medium) var(--font-size-large) var(--font-family);
   --font-links-mobile: var(--font-weight-medium) var(--font-size-xlarge) var(--font-family);
-  --font-title-desktop: var(--font-weight-medium) var(--font-size-xxlarge) var(--font-family);
+  --font-title-desktop: var(--font-weight-medium) var(--font-size-xlarge) var(--font-family);
   --font-title-mobile: var(--font-weight-medium) var(--font-size-xxlarge) var(--font-family);
   --font-subtitle-desktop: var(--font-weight-reg) var(--font-size-large) var(--font-family);
-  --font-subtitle-mobile: var(--font-weight-reg) var(--font-size-xlarge) var(--font-family);
+  --font-subtitle-mobile: var(--font-weight-reg) var(--font-size-xxlarge) var(--font-family);
   --font-skills-desktop: var(--font-weight-reg) var(--font-size-med) var(--font-family);
   --font-skills-mobile: var(--font-weight-reg) var(--font-size-large) var(--font-family);
   --font-description-desktop: var(--font-weight-reg) var(--font-size-small) var(--font-family);
   --font-description-mobile: var(--font-weight-reg) var(--font-size-large) var(--font-family);
-  --iconSquare-width: clamp(.75rem, 2vw, 3rem);
-  --iconSquare-height: clamp(.75rem, 2vw, 3rem);
-  --iconSquare--boxShadow: clamp(.1rem, .5vw, .4rem) clamp(.1rem, .5vw, .4rem) clamp(.05rem, .2vw, .1rem) #00000080;
+  --iconSquare-width-desktop: clamp(.75rem, 1.5vw, 2.5rem);
+  --iconSquare-height-desktop: clamp(.75rem, 1.5vw, 2.5rem);
+  --iconSquare-width-mobile: clamp(1rem, 2.5vw, 3rem);
+  --iconSquare-height-mobile: clamp(1rem, 2.5vw, 3rem);
+  --iconSquare--boxShadow: clamp(.15rem, .4vw, .5rem) clamp(.15rem, .4vw, .5rem) clamp(.05rem, .2vw, .1rem) #00000080;
   --iconsTech-width-desktop: clamp(1.5rem, 3.5vw, 3.5rem);
   --iconsTech-height-desktop: clamp(1.5rem, 3.5vw, 3.5rem);
   --line-height: 1.5;
@@ -166,7 +168,7 @@ a:hover {
 }
 
 .navbar__links {
-  justify-content: start;
+  justify-content: flex-end;
   align-items: center;
   column-gap: var(--spacing-plus);
   width: 62%;
@@ -303,7 +305,7 @@ a:hover {
 }
 
 .section__skills__icons {
-  padding: 0px var(--spacing-plus);
+  padding: 0px var(--padding-skills);
   flex-direction: row;
   grid-area: icons;
   justify-content: space-between;
@@ -312,15 +314,15 @@ a:hover {
 }
 
 .section__skills__icon--filled {
-  width: var(--iconSquare-width);
-  height: var(--iconSquare-height);
+  width: var(--iconSquare-width-desktop);
+  height: var(--iconSquare-height-desktop);
   background: var(--colour-accent-soft);
   box-shadow: var(--iconSquare--boxShadow);
 }
 
 .section__skills__icon--empty {
-  width: var(--iconSquare-width);
-  height: var(--iconSquare-height);
+  width: var(--iconSquare-width-desktop);
+  height: var(--iconSquare-height-desktop);
   background: var(--colour-background);
   border: 1px solid var(--colour-accent-soft);
   box-shadow: var(--iconSquare--boxShadow);
@@ -365,7 +367,8 @@ a:hover {
 .section__projects__card__top__title {
   font: var(--font-title-desktop);
   text-align: start;
-  width: 62%;
+  width: 100%;
+  height: clamp(5rem, 10vh, 12em);
   margin-left: auto;
 }
 
@@ -381,8 +384,9 @@ a:hover {
 }
 
 .section__projects__card__bottom {
+  height: clamp(30rem, 30vh, 40rem);
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   display: flex;
 }
 
@@ -575,15 +579,15 @@ a:hover {
   }
 
   .section__skills__icon--filled {
-    width: var(--iconSquare-width);
-    height: var(--iconSquare-height);
+    width: var(--iconSquare-width-mobile);
+    height: var(--iconSquare-height-mobile);
     background: var(--colour-accent-soft);
     box-shadow: var(--iconSquare--boxShadow);
   }
 
   .section__skills__icon--empty {
-    width: var(--iconSquare-width);
-    height: var(--iconSquare-height);
+    width: var(--iconSquare-width-mobile);
+    height: var(--iconSquare-height-mobile);
     background: var(--colour-background);
     border: 1px solid var(--colour-accent-soft);
     box-shadow: var(--iconSquare--boxShadow);
@@ -604,7 +608,6 @@ a:hover {
 
   .section__projects__card {
     border-bottom: var(--border);
-    outline: 1px solid red;
     flex-direction: column;
     justify-content: center;
     display: flex;
@@ -620,6 +623,8 @@ a:hover {
     width: 62%;
     text-align: start;
     font: var(--font-subtitle-mobile);
+    height: -moz-fit-content;
+    height: fit-content;
     margin-left: auto;
   }
 
