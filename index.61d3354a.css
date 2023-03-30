@@ -337,7 +337,7 @@ a:hover {
   font: var(--font-title-desktop);
   letter-spacing: var(--letter-spacing);
   text-align: start;
-  width: 62%;
+  width: 38%;
   margin-left: auto;
 }
 
@@ -346,7 +346,6 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
   grid-template-rows: repeat(auto, 1fr);
   grid-gap: var(--spacing-plus);
-  padding-top: var(--spacing-plus);
   color: var(--colour-text-light);
   display: grid;
 }
@@ -367,8 +366,10 @@ a:hover {
 .section__projects__card__top__title {
   font: var(--font-title-desktop);
   text-align: start;
-  width: 100%;
-  height: clamp(5rem, 10vh, 12em);
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin-left: auto;
 }
 
@@ -667,6 +668,18 @@ a:hover {
   .section__about__desc__text {
     font-size: var(--font-size-small);
   }
+
+  .section__projects__title {
+    font: var(--font-title-mobile);
+    letter-spacing: var(--letter-spacing);
+    width: 38%;
+    text-align: start;
+    margin-left: auto;
+  }
+
+  .section__projects__card__top__title {
+    height: clamp(10rem, 10vw, 12rem);
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -678,6 +691,10 @@ a:hover {
 
   .section__about__desc__text {
     font-size: var(--font-size-med);
+  }
+
+  .section__projects__card__top__title {
+    height: clamp(10rem, 10vw, 12rem);
   }
 }
 
