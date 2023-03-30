@@ -31,7 +31,7 @@
   --font-weight-reg: 400;
   --font-weight-medium: 500;
   --font-hero: var(--font-weight-medium) var(--font-size-hero) var(--font-family);
-  --font-logo--desktop: var(--font-weight-light) var(--font-size-xlarge) var(--font-family);
+  --font-logo--desktop: var(--font-weight-reg) var(--font-size-xlarge) var(--font-family);
   --font-logo--mobile: var(--font-weight-light) var(--font-size-xxlarge) var(--font-family);
   --font-links-desktop: var(--font-weight-medium) var(--font-size-large) var(--font-family);
   --font-links-mobile: var(--font-weight-medium) var(--font-size-xlarge) var(--font-family);
@@ -157,13 +157,13 @@ a:hover {
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing);
   height: clamp(3rem, 5vw, 5rem);
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
 .navbar__logo-A {
-  transition: all .382s ease-in-out;
   transform: rotate(180deg);
 }
 
@@ -450,6 +450,18 @@ a:hover {
     background: var(--colour-navbar-background);
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+
+  .navbar__logo {
+    font: var(--font-logo--mobile);
+    color: var(--colour-accent-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing);
+    height: clamp(3rem, 5vw, 5rem);
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     display: flex;
   }
