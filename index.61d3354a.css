@@ -10,6 +10,7 @@
   --header-height: clamp(5rem, 7vw, 10rem);
   --padding-x: clamp(2rem, 3vw, 4rem);
   --padding-y: clamp(2rem, 3vw, 4rem);
+  --padding-skills: clamp(.5rem, 1vw, 1rem);
   --border-radius: .5rem;
   --border-width: .1rem;
   --border-style: solid;
@@ -21,7 +22,7 @@
   --transition: all .2s ease-in-out;
   --font-family: "Work Sans", sans-serif;
   --font-size-small: clamp(1.25rem, 2vw, 2rem);
-  --font-size-med: clamp(1.5rem, 2.5vw, 3rem);
+  --font-size-med: clamp(1.5rem, 2.25vw, 2.25rem);
   --font-size-large: clamp(2rem, 3vw, 4rem);
   --font-size-xlarge: clamp(3rem, 4vw, 5rem);
   --font-size-xxlarge: clamp(4rem, 5vw, 6rem);
@@ -227,7 +228,7 @@ a:hover {
 
 .section__aboutSkills__container {
   grid-template: "about skills" 1fr
-  / 38% 62%;
+  / 62% 38%;
   display: grid;
 }
 
@@ -245,6 +246,8 @@ a:hover {
 }
 
 .section__about__desc__container {
+  padding-right: var(--padding-skills);
+  text-align: justify;
   flex-direction: column;
   justify-content: center;
   display: flex;
@@ -278,7 +281,7 @@ a:hover {
   padding-top: var(--spacing-plus);
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: flex-end;
   display: flex;
 }
 
@@ -293,7 +296,7 @@ a:hover {
 .section__skills__skillName {
   font: var(--font-skills-desktop);
   text-align: end;
-  padding-right: var(--spacing-plus);
+  padding-right: var(--padding-skills);
   color: var(--colour-text-light);
   border-right: 1px solid var(--colour-accent-bold);
   grid-area: name;
@@ -601,6 +604,7 @@ a:hover {
 
   .section__projects__card {
     border-bottom: var(--border);
+    outline: 1px solid red;
     flex-direction: column;
     justify-content: center;
     display: flex;
